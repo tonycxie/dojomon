@@ -1,5 +1,4 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.contrib import messages
 import requests
 from .models import *
 
@@ -27,5 +26,17 @@ def get_started(request):
 
 
 def add_team(request, name):
-    print(name)
+    pokemon = Pokemon.objects.get(name = name)
+    trainer = Trainers.objects.get(email = request.session["email"])
+    trainer.trainers_pokemon.add(pokemon)
+    trainer.trainer_level += pokemon.tier
+    trainer.save()
     return redirect("/dashboard")
+
+
+def encounter(request):
+    trainer = Trainers.objects.get(id = request.session["userid"])
+    if trainer.trainer_level < 5:
+        pokemon_list = Pokemon.objects.filter(tier = 1)
+    pokemon = Pokemon.objects.random(pokemon_list)
+    return redirect("/battle/pokemon/" + str(pokemon.id))

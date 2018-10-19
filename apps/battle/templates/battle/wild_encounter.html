@@ -4,20 +4,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Home Page</title>
+    <title>Wild Encounter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'dashboard/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'battle/css/wild_encounter.css' %}">
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <a href="/logout">Logout</a>
-        </div>
-        <h1>Dashboard</h1>
-        <button class="btn btn-primary"><a href="/dashboard/encounter">Random Encounter</a></button>
+    <div class="container-fluid">
+        <h1>Wild Encounter</h1>
+        <img src="{{ wild_pokemon.front_sprite }}" class="back-sprite">
     </div>
 </body>
+
 </html>

@@ -50,6 +50,7 @@ class Trainers(models.Model):
     last_name = models.CharField(max_length = 255)
     email = models.CharField(max_length = 255)
     user_level = models.IntegerField()
+    trainer_level = models.IntegerField()
     password_hash = models.CharField(max_length = 255)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)

@@ -49,6 +49,7 @@ def registration(request):
             last_name = request.POST["last_name"],
             email = request.POST["email"],
             user_level = request.session["user_level"],
+            trainer_level = 0,
             password_hash = pw_hash
         )
     return redirect("/dashboard/get_started")
