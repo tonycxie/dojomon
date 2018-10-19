@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 import re
 
-class UsersManager(models.Manager):
+class TrainersManager(models.Manager):
     def register_validator(self, postData):
         errors = {}
         NAME_REGEX = re.compile(r'^[a-zA-Z][a-zA-Z]+$')
@@ -45,7 +45,7 @@ class UsersManager(models.Manager):
         return errors
 
 
-class Users(models.Model):
+class Trainers(models.Model):
     first_name = models.CharField(max_length = 255)
     last_name = models.CharField(max_length = 255)
     email = models.CharField(max_length = 255)
@@ -53,4 +53,4 @@ class Users(models.Model):
     password_hash = models.CharField(max_length = 255)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
-    objects = UsersManager()
+    objects = TrainersManager()
