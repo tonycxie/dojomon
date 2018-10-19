@@ -15,8 +15,8 @@ def signin(request):
 
 def login(request):
     request.session["email"] = request.POST["email"]
-    if Users.objects.filter(email = request.POST["email"]).count() > 0:
-        user = Users.objects.get(email = request.POST["email"])
+    if Trainers.objects.filter(email = request.POST["email"]).count() > 0:
+        user = Trainers.objects.get(email = request.POST["email"])
         if bcrypt.checkpw(request.POST["password"].encode(), user.password_hash.encode()):
             request.session["userid"] = user.id
             request.session["first_name"] = user.first_name
@@ -36,15 +36,15 @@ def registration(request):
         request.session["last_name"] = request.POST["last_name"]
         request.session["email"] = request.POST["email"]
         request.session["user_level"] = 1 
-        if Users.objects.all().count() == 0:
+        if Trainers.objects.all().count() == 0:
             request.session["user_level"] = 9 
-        errors = Users.objects.register_validator(request.POST)
+        errors = Trainers.objects.register_validator(request.POST)
         if len(errors):
             for key, value in errors.items():
                 messages.error(request, value)
             return redirect("/register")
         pw_hash = bcrypt.hashpw(request.POST["password"].encode(), bcrypt.gensalt())
-        Users.objects.create(
+        Trainers.objects.create(
             first_name = request.POST["first_name"], 
             last_name = request.POST["last_name"],
             email = request.POST["email"],

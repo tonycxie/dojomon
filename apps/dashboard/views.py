@@ -4,6 +4,7 @@ import requests
 from .models import *
 
 def index(request):
+    # loop for putting data from pokemon api into the database
     # for i in range(1, 152):
     #     response = requests.get("https://pokeapi.co/api/v2/pokemon/" + str(i) + "/")
     #     pokemon = response.json()
@@ -23,3 +24,8 @@ def index(request):
 
 def get_started(request):
     return render(request, "dashboard/get_started.html")
+
+
+def add_team(request, name):
+    print(name)
+    return redirect("/dashboard")
