@@ -23,7 +23,7 @@ def login(request):
             request.session["last_name"] = user.last_name
             return redirect("/dashboard")
     messages.error(request, "You could not be logged in")
-    return redirect("/signin")
+    return redirect("/dashboard")
 
 
 def register(request):
@@ -51,4 +51,9 @@ def registration(request):
             user_level = request.session["user_level"],
             password_hash = pw_hash
         )
-    return redirect("/dashboard")
+    return redirect("/dashboard/get_started")
+
+
+def logout(request):
+    request.session.flush()
+    return redirect("/")
