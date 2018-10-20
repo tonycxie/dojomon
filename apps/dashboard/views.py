@@ -31,11 +31,16 @@ def add_team(request, name):
     trainer.trainers_pokemon.add(pokemon)
     trainer.trainer_level += pokemon.tier
     trainer.save()
+    Team.objects.create(
+        order = 1,
+        teams_trainer = trainer,
+        teams_pokemon = pokemon
+    )
     return redirect("/dashboard")
 
 
 def encounter(request):
-    trainer = Trainers.objects.get(id = request.session["userid"])
+    trainer = Trainers.objects.get(email = request.session["email"])
     if trainer.trainer_level < 5:
         pokemon_list = Pokemon.objects.filter(tier = 1)
     pokemon = Pokemon.objects.random(pokemon_list)

@@ -13,9 +13,52 @@
 
 <body>
     <div class="container-fluid">
-        <h1>Wild Encounter</h1>
-        <img src="{{ wild_pokemon.front_sprite }}" class="back-sprite">
+        <div class="enemy-box">
+            <div class="enemy-info">
+                <p>{{ wild_pokemon.name|upper }}</p>
+                <div class="enemy-healthbar">
+                    <p class="hp">HP</p>
+                    <div class="enemy-hp-container">
+                        <div class="enemy-healthpoints"></div>
+                    </div>
+                </div>
+                <p class="health">{{ wild_pokemon.health }}/{{ wild_pokemon.health }}</p>
+            </div>
+            <img src="{{ wild_pokemon.front_sprite }}" class="front-sprite">
+        </div>
+        <div class="my-box">
+            <img src="{{ first_pokemon.back_sprite }}" class="back-sprite">
+            <div class="my-info">
+                <p>{{ first_pokemon.name|upper }}</p>
+                <div class="my-healthbar">
+                    <p class="hp">HP</p>
+                    <div class="my-hp-container">
+                        <div class="my-healthpoints"></div>
+                    </div>
+                </div>
+                <p class="health">{{ first_pokemon.health }}/{{ first_pokemon.health }}</p>
+            </div>
+        </div>
     </div>
+    <div class="menu">
+        <div class="text">
+            <h3 class="textbox">What will {{ first_pokemon.name|upper }} do?</h3>
+        </div>
+        <div class="options">
+            <div class="row">
+                <div class="col">
+                    <a href="" class="fight">Fight</a>
+                </div>
+                <div class="col">
+                    <a href="" class="party">Pokémon</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a href="" class="run">Run Away</a>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
