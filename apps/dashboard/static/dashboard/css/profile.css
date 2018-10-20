@@ -65,11 +65,13 @@ div.pokedex-wrapper {
 
 .filter {
     height: 5%;
-    width: 100%;
+    width: 90%;
     padding: .5em;
+    margin: 0 auto;
 }
 
 #pokedex {
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     padding: .5em;
