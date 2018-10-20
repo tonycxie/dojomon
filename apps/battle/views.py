@@ -33,8 +33,11 @@ def wild_encounter(request, number):
     #         moves_type = move_type
     #     )
 
-    pokemon = Pokemon.objects.get(id = 1)
-    pokemon.pokemons_move.add(Moves.objects.get(name = "tackle"))
+    pokemon = Pokemon.objects.get(id = 151)
+    pokemon.pokemons_move.add(Moves.objects.get(name = "psychic"))
+    pokemon.pokemons_move.add(Moves.objects.get(name = "thunderbolt"))
+    pokemon.pokemons_move.add(Moves.objects.get(name = "ice-beam"))
+    pokemon.pokemons_move.add(Moves.objects.get(name = "flamethrower"))
 
     lead_id = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = 1).teams_pokemon_id
     context = {
