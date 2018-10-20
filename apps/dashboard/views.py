@@ -17,6 +17,7 @@ def index(request):
     #     for pokemon_type in pokemon["types"]:
     #         this_type = Types.objects.get(name = pokemon_type["type"]["name"])
     #         this_pokemon.pokemons_type.add(this_type)
+
     return render(request, "dashboard/index.html")
 
 
@@ -30,6 +31,11 @@ def add_team(request, name):
     trainer.trainers_pokemon.add(pokemon)
     trainer.trainer_level += pokemon.tier
     trainer.save()
+    Team.objects.create(
+        order = 1,
+        teams_trainer = trainer,
+        teams_pokemon = pokemon
+    )
     return redirect("/dashboard")
 
 

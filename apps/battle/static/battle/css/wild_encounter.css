@@ -10,8 +10,12 @@ body .container-fluid {
     height: 80%;
 }
 
-.enemy-box, .my-box {
-    outline: 1px solid red;
+.enemy-box {
+    height: 70%;
+}
+
+.my-box {
+    height: 30%;
 }
 
 .enemy-info, .my-info, img {
@@ -30,9 +34,13 @@ body .container-fluid {
     float: left;
 }
 
+.enemy-info {
+    margin: 15% 0 0 52%;
+}
+
 .front-sprite {
-    width: 15%;
-    margin: 13% 0 0 1%;
+    width: 10%;
+    margin: 18% 0 0 3%;
 }
 
 .back-sprite {
@@ -50,7 +58,54 @@ p, .enemy-healthbar, .my-healthbar {
 }
 
 .enemy-hp-container, .my-hp-container {
-    /* background-color: #3e9b20; */
-    outline: 1px solid blue;
-    width: 92%;
+    height: 1em;
+    width: 87%;
+}
+
+.enemy-healthpoints, .my-healthpoints {
+    background-color: #3e9b20;
+    width: 100%;
+    height: 1em;
+}
+
+.health {
+    float: right;
+    margin-right: 5%;
+}
+
+.menu {
+    outline: 1px solid black;
+    height: 20%;
+}
+
+.text, .options {
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+}
+
+.text {
+    width: 55%;
+    outline: 1px solid black;
+}
+
+h3 {
+    margin: 2%;
+}
+
+.options {
+    width: 44%;
+}
+
+.options .row {
+    /* outline: 1px solid black; */
+    text-align: center;
+    margin: 0;
+    height: 50%;
+    padding-top: 2%;
+}
+
+.row a {
+    color: black;
+    font-size: 25pt;
 }

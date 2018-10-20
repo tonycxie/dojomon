@@ -26,3 +26,10 @@ class Types(models.Model):
     types_pokemon = models.ManyToManyField(Pokemon, related_name = "pokemons_type")
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+
+class Team(models.Model):
+    order = models.IntegerField()
+    teams_trainer = models.ForeignKey(Trainers, related_name = "trainers_team")
+    teams_pokemon = models.ForeignKey(Pokemon, related_name = "pokemons_team")
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
