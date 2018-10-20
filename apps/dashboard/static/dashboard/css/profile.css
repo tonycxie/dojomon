@@ -1,0 +1,51 @@
+body * {
+    /* outline: 1px solid pink; */
+    margin: 0;
+    padding: 0;
+}
+
+.trainer-card {
+    height: 320px;
+    width: 650px;
+    border: 1px solid black;
+    border-radius: .5em;
+    margin: 2em 5em;
+    background-color: whitesmoke;
+}
+
+.trainer-card > h3 {
+    padding: .25em;
+    margin-left: .25em;
+}
+
+.trainer-sprite {
+    padding: 0;
+}
+
+img.trainer-sprite {
+    width: 100px;
+    margin: .5em;
+    padding: .7em;
+    border: 1px solid black;
+    border-radius: 50%;
+    vertical-align: top;
+}
+
+.trainer-info {
+    display: inline-block;
+    margin: .5em;
+}
+
+.player-party {
+    width: 40%;
+    margin: .5em 1em;
+    border: 1px solid rgb(87, 82, 82);
+    border-radius: .5em;
+}
+
+.pokemon-img > img{
+    width: 50px;
+    height: 50px;
+    margin: .5em 1em;
+}
+}

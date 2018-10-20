@@ -42,5 +42,8 @@ def encounter(request):
     return redirect("/battle/pokemon/" + str(pokemon.id))
 
 def profile_view(request):
-
-    return render(request, "dashboard/profile.html")
+    # print(request.session["userid"])
+    data = {
+        "trainer": Trainers.objects.get(id=request.session["userid"])
+    }
+    return render(request, "dashboard/profile.html",data)

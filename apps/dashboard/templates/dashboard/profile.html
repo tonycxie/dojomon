@@ -33,11 +33,42 @@
                 <li><a href="">pokemon</a></li>
                 <li><a href="">trade requests</a></li>
                 <li><a href="">account settings</a></li>
-                <li><a href="">logout</a></li>
+                <li><a href="/">logout</a></li>
             </ul>
         </nav>
         <div id="content">
             <div><a id="collapse-btn"><i class="fa fa-bars" aria-hidden="true"></i></a></div>
+            <div class="container-fluid row">
+                <div class="trainer-card">
+                    <h3>Trainer Card</h3>
+                    <img class="trainer-sprite col-2" src="{% static 'dashboard/images/politoed.png'%}" alt="">
+                    <div class="trainer-info col-9">
+                        <p>Name: {{trainer.first_name}}</p>
+                        <p>Trainer Level: {{trainer.trainer_level}}</p>
+                        <p>Pokemon Found: {{trainer.trainers_pokemon.count}}</p>
+                    </div>
+                    <div class="player-party row">
+                        <div class="pokemon-img">
+                            <img src="{% static 'dashboard/images/bulbasaur.png'%}" alt="">
+                        </div>
+                        <div class="pokemon-img">
+                            <img src="{% static 'dashboard/images/bulbasaur.png'%}" alt="">
+                        </div>
+                        <div class="pokemon-img">
+                            <img src="{% static 'dashboard/images/bulbasaur.png'%}" alt="">
+                        </div>
+                        <div class="pokemon-img">
+                            <img src="{% static 'dashboard/images/bulbasaur.png'%}" alt="">
+                        </div>
+                        <div class="pokemon-img">
+                            <img src="{% static 'dashboard/images/bulbasaur.png'%}" alt="">
+                        </div>
+                        <div class="pokemon-img">
+                            <img src="{% static 'dashboard/images/bulbasaur.png'%}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
