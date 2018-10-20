@@ -45,3 +45,11 @@ def encounter(request):
         pokemon_list = Pokemon.objects.filter(tier = 1)
     pokemon = Pokemon.objects.random(pokemon_list)
     return redirect("/battle/pokemon/" + str(pokemon.id))
+
+def profile_view(request):
+    # print(request.session["userid"])
+    data = {
+        "trainer": Trainers.objects.get(id=request.session["userid"]),
+        "all_pokemon": Pokemon.objects.all()
+    }
+    return render(request, "dashboard/profile.html",data)
