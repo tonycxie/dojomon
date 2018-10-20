@@ -17,7 +17,6 @@ def index(request):
     #     for pokemon_type in pokemon["types"]:
     #         this_type = Types.objects.get(name = pokemon_type["type"]["name"])
     #         this_pokemon.pokemons_type.add(this_type)
-
     return render(request, "dashboard/index.html")
 
 
@@ -35,7 +34,7 @@ def add_team(request, name):
 
 
 def encounter(request):
-    trainer = Trainers.objects.get(id = request.session["userid"])
+    trainer = Trainers.objects.get(email = request.session["email"])
     if trainer.trainer_level < 5:
         pokemon_list = Pokemon.objects.filter(tier = 1)
     pokemon = Pokemon.objects.random(pokemon_list)
