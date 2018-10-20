@@ -44,6 +44,7 @@ def encounter(request):
 def profile_view(request):
     # print(request.session["userid"])
     data = {
-        "trainer": Trainers.objects.get(id=request.session["userid"])
+        "trainer": Trainers.objects.get(id=request.session["userid"]),
+        "all_pokemon": Pokemon.objects.all()
     }
     return render(request, "dashboard/profile.html",data)

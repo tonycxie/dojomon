@@ -48,4 +48,51 @@ img.trainer-sprite {
     height: 50px;
     margin: .5em 1em;
 }
+
+.trainer-card, .pokedex-wrapper {
+    vertical-align: top;
+    display: inline-block;
 }
+
+
+div.pokedex-wrapper {
+    margin: 2em 0;
+    width: 800px;
+    padding: 1em;
+    border: 1px solid black;
+    border-radius: .5em;
+}
+
+.filter {
+    height: 5%;
+    width: 100%;
+    padding: .5em;
+}
+
+#pokedex {
+    display: flex;
+    flex-wrap: wrap;
+    padding: .5em;
+    height: 600px;
+    width: 90%;
+    border: 1px solid black;
+    overflow-y: auto;
+}
+
+.sprite {
+    display: inline-block;
+}
+
+.sprite > img {
+    border: none;
+    margin-top: .5em;
+    margin-left: .5em;
+    cursor: pointer;
+    -webkit-filter: brightness(0);
+    filter: brightness(0);
+}
+
+div.found > img {
+    -webkit-filter: brightness(100%);
+    filter: brightness(100%);
+  }
