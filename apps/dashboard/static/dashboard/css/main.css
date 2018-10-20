@@ -1,16 +1,38 @@
-body .container {
+/* body .container {
     margin: 2em auto;
-    /* background-image: url("/static/dashboard/images/gameboy.jpg");
+    background-image: url("/static/dashboard/images/gameboy.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    height: 1000px; */
+    height: 1000px;
     text-align: center;
+} */
+body * {
+    outline: 1px solid pink;
+    margin: 0;
+    padding: 0;
 }
 
-.header {
-    text-align: right;
+div.container-fluid {
+    padding: 0;
+    margin: 0;
 }
 
-button a {
-    color: white;
+div.party-wrapper {
+    padding: 2em;
+}
+
+#player-party {
+    border: 1px solid black;
+    border-radius: .5em;
+}
+
+.pokemon-img {
+    display: inline-block;
+    padding: .5em;
+    margin: 1em .5em;
+}
+
+#player-party .pokemon-img > img {
+    width: 55px;
+    height: 55px;
 }
