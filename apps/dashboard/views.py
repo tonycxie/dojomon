@@ -40,3 +40,7 @@ def encounter(request):
         pokemon_list = Pokemon.objects.filter(tier = 1)
     pokemon = Pokemon.objects.random(pokemon_list)
     return redirect("/battle/pokemon/" + str(pokemon.id))
+
+def profile_view(request):
+
+    return render(request, "dashboard/profile.html")
