@@ -7,17 +7,70 @@
     <title>Home Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
     {% load static %}
     <link rel="stylesheet" href="{% static 'dashboard/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/navbar.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'dashboard/js/index.js' %}"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <a href="/logout">Logout</a>
+    <div id="wrapper" class="container-fluid">
+        <nav class="float-left" id="sidebar">
+            <div class="sidebar-header">
+                <h4>Pokemon Menu</h4>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <p>Ash Ketchup</p>
+                </li>
+                <li><a href="">edit team</a></li>
+                <li><a href="">pokemon</a></li>
+                <li><a href="">trade requests</a></li>
+                <li><a href="">account settings</a></li>
+                <li><a href="">logout</a></li>
+            </ul>
+        </nav>
+        <div id="content">
+            <div><a id="collapse-btn"><i class="fa fa-bars" aria-hidden="true"></i></a></div>
+            <div class="row container-fluid">
+                <div class="party-wrapper">
+                    <h4>Team Name Here</h4>
+                    <div id="player-party">
+                        <div class="pokemon-img">
+                            <img src="{% static 'dashboard/images/bulbasaur.png'%}" alt="">
+                        </div>
+                        <div class="pokemon-img">
+                            <img src="{% static 'dashboard/images/bulbasaur.png'%}" alt="">
+                        </div>
+                        <div class="pokemon-img">
+                            <img src="{% static 'dashboard/images/bulbasaur.png'%}" alt="">
+                        </div>
+                        <div class="pokemon-img">
+                            <img src="{% static 'dashboard/images/bulbasaur.png'%}" alt="">
+                        </div>
+                        <div class="pokemon-img">
+                            <img src="{% static 'dashboard/images/bulbasaur.png'%}" alt="">
+                        </div>
+                        <div class="pokemon-img">
+                            <img src="{% static 'dashboard/images/bulbasaur.png'%}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <h1>Dashboard</h1>
-        <button class="btn btn-primary"><a href="/dashboard/encounter">Random Encounter</a></button>
+
+
+
+
+
+
+        <!-- <button class="btn btn-primary"><a href="/dashboard/encounter">Random Encounter</a></button> -->
     </div>
 </body>
+
 </html>
