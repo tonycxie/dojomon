@@ -17,9 +17,6 @@ def index(request):
     #     for pokemon_type in pokemon["types"]:
     #         this_type = Types.objects.get(name = pokemon_type["type"]["name"])
     #         this_pokemon.pokemons_type.add(this_type)
-    quezan = Trainers.objects.get(id = 3)
-    charmander = Pokemon.objects.get(id = 4)
-    Team.objects.create(order = 1, teams_pokemon = charmander, teams_trainer = quezan)
     return render(request, "dashboard/index.html")
 
 
