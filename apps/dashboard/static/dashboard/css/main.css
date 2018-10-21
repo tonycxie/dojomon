@@ -7,7 +7,7 @@
     text-align: center;
 } */
 body * {
-    outline: 1px solid pink;
+    /* outline: 1px solid pink; */
     margin: 0;
     padding: 0;
 }
@@ -24,15 +24,45 @@ div.party-wrapper {
 #player-party {
     border: 1px solid black;
     border-radius: .5em;
+    width: 95%;
 }
 
+ /* use flex box for this section */
 .pokemon-img {
     display: inline-block;
-    padding: .5em;
+    padding: .65em;
     margin: 1em .5em;
 }
 
 #player-party .pokemon-img > img {
     width: 55px;
     height: 55px;
+}
+
+#players-display {
+    padding: 2em;
+    display: inline-block;
+}
+
+#players-display h4 {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.all_trainers {
+    width: 80%;
+    border: 1px solid black;
+    border-radius: .5em;
+    margin: 0 auto;
+    height: 200px;
+    overflow-y: auto;
+}
+
+.all_trainers > p {
+    padding: .5em;
+    margin: .25em;
+}
+
+.all_trainers p > a {
+    color: black;
 }

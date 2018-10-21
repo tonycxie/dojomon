@@ -38,8 +38,8 @@
         </nav>
         <div id="content">
             <div><a id="collapse-btn"><i class="fa fa-bars" aria-hidden="true"></i></a></div>
-            <div class="row container-fluid">
-                <div class="party-wrapper">
+            <div class="container-fluid row">
+                <div class="party-wrapper col-5">
                     <h4>Team Name Here</h4>
                     <div id="player-party">
                         <div class="pokemon-img">
@@ -60,6 +60,15 @@
                         <div class="pokemon-img">
                             <img src="{% static 'dashboard/images/bulbasaur.png'%}" alt="">
                         </div>
+                    </div>
+                </div>
+                <div id="players-display" class="col-3">
+                    <h4>Trainers!</h4>
+                    <div class="all_trainers">
+                        {% for trainer in all_trainers %}
+
+                            <p ><a href="/dashboard/profile/{{trainer.id}}">{{trainer.first_name}} {{trainer.last_name}}</a></p>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
