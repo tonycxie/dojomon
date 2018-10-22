@@ -17,7 +17,11 @@ def index(request):
     #     for pokemon_type in pokemon["types"]:
     #         this_type = Types.objects.get(name = pokemon_type["type"]["name"])
     #         this_pokemon.pokemons_type.add(this_type)
-    return render(request, "dashboard/index.html")
+    data = {
+        "all_trainers": Trainers.objects.all(),
+        "your_pokemon": Trainers.objects.get(id=request.session["userid"]).trainers_pokemon.all()
+    }
+    return render(request, "dashboard/index.html", data)
 
 
 def get_started(request):
@@ -45,10 +49,11 @@ def encounter(request):
     pokemon = Pokemon.objects.random(pokemon_list)
     return redirect("/battle/pokemon/" + str(pokemon.id))
 
-def profile_view(request):
+def profile_view(request, id):
     # print(request.session["userid"])
     data = {
-        "trainer": Trainers.objects.get(id=request.session["userid"]),
-        "all_pokemon": Pokemon.objects.all()
+        "trainer": Trainers.objects.get(id=id),
+        "all_pokemon": Pokemon.objects.all(),
+        "trainers_pokemon": Trainers.objects.get(id=id).trainers_pokemon.all()
     }
     return render(request, "dashboard/profile.html",data)
