@@ -28,7 +28,7 @@
                     <p>Ash Ketchup</p>
                 </li>
                 <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/dashboard/profile">Profile</a></li>
+                <li><a href="/dashboard/profile/{{request.session.userid}}">Profile</a></li>
                 <li><a href="">edit team</a></li>
                 <li><a href="">pokemon</a></li>
                 <li><a href="">trade requests</a></li>
@@ -66,8 +66,7 @@
                     <h4>Trainers!</h4>
                     <div class="all_trainers">
                         {% for trainer in all_trainers %}
-
-                            <p ><a href="/dashboard/profile/{{trainer.id}}">{{trainer.first_name}} {{trainer.last_name}}</a></p>
+                        <p><a href="/dashboard/profile/{{trainer.id}}">{{trainer.first_name}} {{trainer.last_name}}</a></p>
                         {% endfor %}
                     </div>
                 </div>
