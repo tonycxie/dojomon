@@ -52,6 +52,7 @@ class Trainers(models.Model):
     user_level = models.IntegerField()
     trainer_level = models.IntegerField()
     password_hash = models.CharField(max_length = 255)
+    character_sprite = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     objects = TrainersManager()

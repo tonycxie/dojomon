@@ -1,4 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.core import serializers
+import json
 import requests
 from .models import *
 
@@ -57,3 +59,11 @@ def profile_view(request, id):
         "trainers_pokemon": Trainers.objects.get(id=id).trainers_pokemon.all()
     }
     return render(request, "dashboard/profile.html",data)
+
+def save_sprite(request):
+    print("THIS IS A TEST ")
+    print(request.POST["character_sprite"])
+    trainer = Trainers.objects.get(id=request.session["userid"])
+    trainer.character_sprite = request.POST["character_sprite"]
+    trainer.save()
+    return HttpResponse("success")
