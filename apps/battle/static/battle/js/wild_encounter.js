@@ -32,7 +32,7 @@ $(document).ready(function() {
                 for (let i = 0; i < serverResponse.length; i++) {
                     content += "<div class='col move'>";
                     content += "<h3>" + serverResponse[i]["fields"]["name"] + "</h3>";
-                    content += "<p>" + types[serverResponse[i]["fields"]["moves_type"]] + 
+                    content += "<p>" + types[serverResponse[i]["fields"]["moves_type"] - 1] + 
                         ", Power:" + serverResponse[i]["fields"]["power"] + "</p>";
                     content += "<p>" + serverResponse[i]["fields"]["pp"] + "/" + 
                         serverResponse[i]["fields"]["pp"];
