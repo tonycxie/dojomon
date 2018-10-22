@@ -78,13 +78,13 @@ p, .enemy-healthbar, .my-healthbar {
     height: 20%;
 }
 
-.text, .options {
+.display, .options {
     display: inline-block;
     vertical-align: top;
     height: 100%;
 }
 
-.text {
+.display {
     width: 55%;
     outline: 1px solid black;
 }
@@ -98,14 +98,24 @@ h3 {
 }
 
 .options .row {
-    /* outline: 1px solid black; */
     text-align: center;
     margin: 0;
     height: 50%;
     padding-top: 2%;
 }
 
-.row a {
+.row button {
     color: black;
     font-size: 25pt;
+    border: none;
+}
+
+.display .row {
+    margin: 0;
+    height: 50%;
+}
+
+.display .col {
+    outline: 1px solid black;
+    text-align: center;
 }
