@@ -1,4 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.core import serializers
+import json
 import requests
 from .models import *
 
@@ -33,15 +35,15 @@ def wild_encounter(request, number):
     #         moves_type = move_type
     #     )
 
-    pokemon = Pokemon.objects.get(id = 151)
-    pokemon.pokemons_move.add(Moves.objects.get(name = "psychic"))
-    pokemon.pokemons_move.add(Moves.objects.get(name = "thunderbolt"))
-    pokemon.pokemons_move.add(Moves.objects.get(name = "ice-beam"))
-    pokemon.pokemons_move.add(Moves.objects.get(name = "flamethrower"))
-
-    lead_id = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = 1).teams_pokemon_id
+    lead_id = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = 1).teams_pokemon_id 
     context = {
         "wild_pokemon": Pokemon.objects.get(id = number),
-        "first_pokemon": Pokemon.objects.get(id = lead_id)
+        "first_pokemon": Pokemon.objects.get(id = lead_id),
     }
     return render(request, "battle/wild_encounter.html", context)
+
+
+def get_moves(request):
+    pokemon = Pokemon.objects.get(name = request.POST["pokemon"])
+    moves = Moves.objects.filter(moves_pokemon = pokemon)
+    return HttpResponse(serializers.serialize("json", moves), content_type = "application/json")

@@ -7,8 +7,10 @@
     <title>Wild Encounter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {% load static %}
     <link rel="stylesheet" href="{% static 'battle/css/wild_encounter.css' %}">
+    <script src="{% static 'battle/js/wild_encounter.js' %}"></script>
 </head>
 
 <body>
@@ -22,7 +24,9 @@
                         <div class="enemy-healthpoints"></div>
                     </div>
                 </div>
-                <p class="health">{{ wild_pokemon.health }}/{{ wild_pokemon.health }}</p>
+                <p class="health">
+                    <span id="enemy-current-hp">{{ wild_pokemon.health }}</span>/{{ wild_pokemon.health }}
+                </p>
             </div>
             <img src="{{ wild_pokemon.front_sprite }}" class="front-sprite">
         </div>
@@ -36,26 +40,32 @@
                         <div class="my-healthpoints"></div>
                     </div>
                 </div>
-                <p class="health">{{ first_pokemon.health }}/{{ first_pokemon.health }}</p>
+                <p class="health">
+                    <span id="my-current-hp">{{ first_pokemon.health }}</span>/{{ first_pokemon.health }}
+                </p>
             </div>
         </div>
     </div>
     <div class="menu">
-        <div class="text">
+        <div class="display">
             <h3 class="textbox">What will {{ first_pokemon.name|upper }} do?</h3>
         </div>
         <div class="options">
             <div class="row">
                 <div class="col">
-                    <a href="" class="fight">Fight</a>
+                    <form action="/battle/moves" method="post" id="moves_form">
+                        {% csrf_token %}
+                        <input type="hidden" name = "pokemon" value="{{ first_pokemon.name }}">
+                        <button type="submit" id="fight">Fight</button>
+                    </form>
                 </div>
                 <div class="col">
-                    <a href="" class="party">Pokémon</a>
+                    <button id="party">Pokémon</button>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <a href="" class="run">Run Away</a>
+                    <button id="run">Run Away</button>
                 </div>
             </div>
         </div>
