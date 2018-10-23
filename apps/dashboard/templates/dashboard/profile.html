@@ -38,39 +38,55 @@
         </nav>
         <div id="content">
             <div><a id="collapse-btn"><i class="fa fa-bars" aria-hidden="true"></i></a></div>
-            <div class="container-fluid">
-                <div class="trainer-card">
-                    <h3>Trainer Card</h3>
-                    {% if request.session.userid == trainer.id %}
-                    <img class="trainer-sprite col-2" src="{{trainer.character_sprite}}"
-                        alt="">
-                    {%else%}
-                    <img class="other-trainer-sprite col-2" src="{{trainer.character_sprite}}"
-                        alt="">
-                    {%endif%}
+            <div class="container-fluid row">
+                <div class="col-6">
+                    <div class="trainer-card">
+                        <h3>Trainer Card</h3>
+                        {% if request.session.userid == trainer.id %}
+                        <img class="trainer-sprite col-2" src="{{trainer.character_sprite}}" alt="">
+                        {%else%}
+                        <img class="other-trainer-sprite col-2" src="{{trainer.character_sprite}}" alt="">
+                        {%endif%}
 
-                    <div class="trainer-info col-9">
-                        <p>Name: {{trainer.first_name}}</p>
-                        <p>Trainer Level: {{trainer.trainer_level}}</p>
-                        <p>Pokemon Found: {{trainer.trainers_pokemon.count}}</p>
-                    </div>
-                    <div class="player-party row">
-                        {% for sprite in trainers_team %}
-                        <div class="pokemon-img">
-                            <img src="{{sprite.front_sprite}}">
+                        <div class="trainer-info col-9">
+                            <p>Name: {{trainer.first_name}}</p>
+                            <p>Trainer Level: {{trainer.trainer_level}}</p>
+                            <p>Pokemon Found: {{trainer.trainers_pokemon.count}}</p>
                         </div>
-                        {%endfor%}
+                        <div class="player-party row">
+                            {% for sprite in trainers_team %}
+                            <div class="pokemon-img">
+                                <img src="{{sprite.front_sprite}}">
+                            </div>
+                            {%endfor%}
+                        </div>
+                        <div class="edit-sprites row">
+                            <div class="sprites-wrapper"></div>
+                            <form id="sprite-form" action="/dashboard/save_sprite" method="post">
+                                {% csrf_token %}
+                                <input id="characters-sprite" type="hidden" name="character_sprite" value="{{trainer.character_sprite}}">
+                                <button type="submit" id="save-sprite" class="btn btn-primary">save</button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="edit-sprites row">
-                        <div class="sprites-wrapper"></div>
-                        <form id="sprite-form" action="/dashboard/save_sprite" method="post">
-                            {% csrf_token %}
-                            <input id="characters-sprite" type="hidden" name="character_sprite" value="{{trainer.character_sprite}}">
-                            <button type="submit" id="save-sprite" class="btn btn-primary">save</button>
-                        </form>
+                    <div id="pokemon-view" class="container-fluid">
+                        <div class="row top">
+                            <div class="col-3 img-wrapper">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png" alt="">
+                            </div>
+                            <div class="poke-info col-8">
+                                <p class="name"></p>
+                                <p class="type"></p>
+                                <p class="health"></p>
+                                <p class="speed"></p>
+                                <p class="number"></p>
+                            </div>
+                        </div>
+                        <div class="row bottom"></div>
+                        
                     </div>
                 </div>
-                <div class="pokedex-wrapper container-fluid">
+                <div class="pokedex-wrapper col-6 container-fluid">
                     <h4>Pokedex</h4>
                     <div class="filter">
                         <button class="btn btn-primary" id="all">all</button>
@@ -85,13 +101,19 @@
                     <div id="pokedex">
                         {% for sprite in all_pokemon %}
                         {% if sprite in trainer.trainers_pokemon.all %}
-                        <div class="sprite found tier{{sprite.tier}}">
-                            <img src="{{sprite.front_sprite}}" alt="">
-                        </div>
+                        <form class="sprite found tier{{sprite.tier}} " action="/dashboard/view_pokemon/{{sprite.id}}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">
+                                <img class="sprite-img" src="{{sprite.front_sprite}}" alt="">
+                            </button>
+                        </form>
                         {% else %}
-                        <div class="sprite tier{{sprite.tier}}">
-                            <img src="{{sprite.front_sprite}}" alt="">
-                        </div>
+                        <form class="sprite tier{{sprite.tier}}" action="/dashboard/view_pokemon/{{sprite.id}}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">
+                                <img class="sprite-img" src="{{sprite.front_sprite}}" alt="">
+                            </button >
+                        </form>
                         {% endif %}
                         {% endfor %}
                     </div>

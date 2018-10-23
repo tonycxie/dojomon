@@ -3,6 +3,8 @@ from django.core import serializers
 import json
 import requests
 from .models import *
+from apps.battle.models import Moves
+
 
 def index(request):
     # loop for putting data from pokemon api into the database
@@ -72,9 +74,19 @@ def profile_view(request, id):
     return render(request, "dashboard/profile.html",data)
 
 def save_sprite(request):
-    print("THIS IS A TEST ")
-    print(request.POST["character_sprite"])
     trainer = Trainers.objects.get(id=request.session["userid"])
     trainer.character_sprite = request.POST["character_sprite"]
     trainer.save()
     return HttpResponse("success")
+
+def view_pokemon(request, id):
+    pokemon = Pokemon.objects.filter(id=id)
+    moves = Moves.objects.filter(moves_pokemon = pokemon).all()
+    types = Types.objects.filter(types_pokemon = pokemon).all()
+    response =  {
+            "pokemon": serializers.serialize("json", pokemon),
+            "moves": serializers.serialize("json", moves),
+            "type": serializers.serialize("json", types)
+    }
+    return HttpResponse(json.dumps(response), content_type = "application/json")
+

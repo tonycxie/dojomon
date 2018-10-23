@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'^add_team/(?P<name>\w+)$', views.add_team),
     url(r'^encounter$', views.encounter),
     url(r'^profile/(?P<id>\d+)$', views.profile_view),
-    url(r'^save_sprite$', views.save_sprite)
+    url(r'^save_sprite$', views.save_sprite),
+    url(r'^view_pokemon/(?P<id>\d+)$', views.view_pokemon)
 ]
