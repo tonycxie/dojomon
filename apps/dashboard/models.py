@@ -22,6 +22,23 @@ class Pokemon(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
     objects = PokemonManager()
 
+# class NicknameManager(models.Manager):
+#     def validate(self, postData):
+#         errors = {}
+#         if len(postData["nickname"]) < 1:
+#             errors["blank"] = "nickname cannot be blank"
+#         elif len(postData["nickname"]) <= 3:
+#             errors["nickname"] = "nickname must be more than 3 characters"
+#         return errors
+
+# class Nickname(models.Model):
+#     nickname = models.CharField(max_length=255)
+#     pokemon = models.ManyToManyField(Pokemon, through="log_reg.Trainers")
+#     created_at = models.DateTimeField(auto_now_add = True)
+#     updated_at = models.DateTimeField(auto_now = True)
+
+#     objects = NicknameManager()
+
 class Types(models.Model):
     name = models.CharField(max_length = 255)
     types_pokemon = models.ManyToManyField(Pokemon, related_name = "pokemons_type")
@@ -34,3 +51,4 @@ class Team(models.Model):
     teams_pokemon = models.ForeignKey(Pokemon, related_name = "pokemons_team")
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+
