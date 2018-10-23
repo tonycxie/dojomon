@@ -19,9 +19,14 @@ def index(request):
     #     for pokemon_type in pokemon["types"]:
     #         this_type = Types.objects.get(name = pokemon_type["type"]["name"])
     #         this_pokemon.pokemons_type.add(this_type)
+    teams = Trainers.objects.get(id=request.session["userid"]).trainers_team.all()
+    pokemon_team = []
+    for team in teams:
+        pokemon_id = team.teams_pokemon_id
+        pokemon_team.append(Pokemon.objects.get(id=pokemon_id))
     data = {
         "all_trainers": Trainers.objects.all(),
-        "your_pokemon": Trainers.objects.get(id=request.session["userid"]).trainers_pokemon.all()
+        "your_pokemon": pokemon_team
     }
     return render(request, "dashboard/index.html", data)
 
@@ -53,11 +58,17 @@ def encounter(request):
 
 def profile_view(request, id):
     # print(request.session["userid"])
+    teams = Trainers.objects.get(id=id).trainers_team.all()
+    pokemon_team = []
+    for team in teams:
+        pokemon_id = team.teams_pokemon_id
+        pokemon_team.append(Pokemon.objects.get(id=pokemon_id))
     data = {
         "trainer": Trainers.objects.get(id=id),
         "all_pokemon": Pokemon.objects.all(),
-        "trainers_pokemon": Trainers.objects.get(id=id).trainers_pokemon.all()
+        "trainers_team": pokemon_team
     }
+    print(Trainers.objects.get(id=id).trainers_pokemon.all())
     return render(request, "dashboard/profile.html",data)
 
 def save_sprite(request):

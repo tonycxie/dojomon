@@ -29,6 +29,31 @@ function showUnknown() {
     });
 }
 
+function showTier1() {
+    let pokemon = document.querySelectorAll(".sprite")
+    pokemon.forEach(element => {
+        if(!element.classList.contains("tier1")) {
+            $(element).addClass("hide");
+        } else {
+            $(element).removeClass("hide");
+        }
+    });
+}
+
+
+function showTier(num) {
+    let pokemon = document.querySelectorAll(".sprite")
+    pokemon.forEach(element => {
+        if(!element.classList.contains("tier" + num)) {
+            $(element).addClass("hide");
+        } else {
+            $(element).removeClass("hide");
+        }
+    });
+}
+
+
+
 function showSprites() {
     $(".player-party").toggle()
     $(".edit-sprites").toggle()
@@ -72,6 +97,11 @@ $(document).ready(function () {
     $("#found").click(showFound);
     $("#all").click(showAll);
     $("#unknown").click(showUnknown);
+    $("#tier1").click(function() { showTier(1); });
+    $("#tier2").click(function() { showTier(2); });
+    $("#tier3").click(function() { showTier(3); });
+    $("#tier4").click(function() { showTier(4); });
+    $("#tier5").click(function() { showTier(5); });
 
     $("#collapse-btn").click(function () { 
         $('#sidebar').toggleClass('active');

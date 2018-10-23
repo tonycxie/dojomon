@@ -31,6 +31,10 @@ img.trainer-sprite, img.other-trainer-sprite {
     vertical-align: top;
 }
 
+img.trainer-sprite:hover {
+    border: 1px solid lightblue;
+}
+
 .trainer-info {
     display: inline-block;
     margin: .5em;
@@ -102,8 +106,6 @@ div.pokedex-wrapper {
 
 #pokedex {
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
     padding: .5em;
     height: 600px;
     width: 90%;
@@ -122,6 +124,7 @@ div.pokedex-wrapper {
     cursor: pointer;
     -webkit-filter: brightness(0);
     filter: brightness(0);
+    vertical-align: top;
 }
 
 div.found > img {
