@@ -151,6 +151,17 @@ function displayMoves() {
     });
 }
 
+// flashing animation after pokemon is hit
+function flash(time, interval, img) {
+    let timer = window.setInterval(function() {
+        $(img).css("opacity", "0.1");
+        window.setTimeout(function() {
+            $(img).css("opacity", "1");
+        }, 100);
+    }, interval);
+    window.setTimeout(function() {clearInterval(timer);}, time);
+}
+
 // does damage to enemy based on the move you made and types involved
 function myMove() {
     $(".move").click(function() {
@@ -162,6 +173,15 @@ function myMove() {
             meFirst = false;
             enemyMove();
         }
+        let timeout = 0;
+        // adjusts when animations appear based on which pokemon goes first
+        if (meFirst) {  
+            timeout = 1000;
+        } else {
+            timeout = 3000;
+        }
+        let myHP = $("#my-current-hp").html();
+        let move = $(this).find("h3").html();
         let attackType = $(this).find(".type").val();
         let power = $(this).find(".power").val();
         let enemyHP = $("#enemy-current-hp").html();
@@ -176,24 +196,59 @@ function myMove() {
         }
         let startHP = $("#enemy-start-hp").html();
         let enemyHPBar = newEnemyHP / startHP * 100;
-        $(".enemy-healthpoints").css("width", enemyHPBar + "%");
-        $("#enemy-current-hp").html(newEnemyHP);
         if (meFirst) {
+            // menu disappears if you go first
+            $(".options").toggle(); 
             $(".display").html(
-                "<h3>" + $("#my-name").html() + " used " + $(this).find("h3").html() + "</h3>"
+                "<h3>" + $("#my-name").html() + " used " + move + "</h3>"
             )
         } else {
-            $(".display").append(
-                "<h3>" + $("#my-name").html() + " used " + $(this).find("h3").html() + "</h3>"
-            )      
+            window.setTimeout(function () {
+                myHP = $("#my-current-hp").html();
+                // if my health is 0, do not display next move
+                if (myHP == 0) {
+                    return;
+                }
+                $(".display").append(
+                    "<h3>" + $("#my-name").html() + " used " + move + "</h3>"
+                )   
+            }, timeout);
+            timeout += 1000;   
         }
-        if (powerMult > power) {
-            $(".display").append("<h3>It was super effective!</h3>");
-        } else if (powerMult == 0) {
-            $(".display").append("<h3>It had no effect :(</h3>");
-        } else if (powerMult < power) {
-            $(".display").append("<h3>It was not very effective...</h3>");
-        }
+        window.setTimeout(function() {
+            myHP = $("#my-current-hp").html();
+            // if my health is 0, display losing message and end function
+            if (myHP == 0) {
+                $(".display").html(
+                    "<h3 class='lose'>You lose :(</h3>" + 
+                    "<a href='/dashboard'>Return to Dashboard</a>"
+                );
+                return;
+            }
+            flash(600, 300, $(".front-sprite"));
+            $("#enemy-current-hp").html(newEnemyHP);
+            $(".enemy-healthpoints").css("width", enemyHPBar + "%");
+            if (powerMult > power) {
+                $(".display").append("<h3>It was super effective!</h3>");
+            } else if (powerMult == 0) {
+                $(".display").append("<h3>It had no effect :(</h3>");
+            } else if (powerMult < power) {
+                $(".display").append("<h3>It was not very effective...</h3>");
+            }
+            enemyHP = $("#enemy-current-hp").html();
+            // if enemy health is 0, display winning message and end function
+            if (enemyHP == 0) {
+                $(".display").html(
+                    "<h3 class='win'>You win! :D</h3>" + 
+                    "<a href='/dashboard'>Return to Dashboard</a>"
+                );
+                return;
+            }
+            // menu reappears if enemy goes first
+            if (!meFirst) {
+                $(".options").toggle();
+            }
+        }, timeout);
         // enemy pokemon will attack after you if you are faster
         if (meFirst) {
             enemyMove();
@@ -201,10 +256,18 @@ function myMove() {
     });
 }
 
+// enemy chooses a move at random and attacks
 function enemyMove() {
+    let timeout = 0;
+    // adjusts when animations appear based on which pokemon goes first
+    if (meFirst) {
+        timeout = 3000;
+    } else {
+        timeout = 1000;
+    }
     let enemyMoves = $(".enemy-moves input");
     let myHP = $("#my-current-hp").html();
-    let randInt = Math.floor(Math.random() * Math.floor(4));
+    let randInt = Math.floor(Math.random() * Math.floor(enemyMoves.length));
     let randMove = enemyMoves[randInt];
     let typeIndex = parseInt(randMove.className);
     let moveType = types[typeIndex - 1];
@@ -221,24 +284,59 @@ function enemyMove() {
     }
     let startHP = $("#my-start-hp").html();
     let myHPBar = myNewHP / startHP * 100;
-    $(".my-healthpoints").css("width", myHPBar + "%");
-    $("#my-current-hp").html(myNewHP);
     if (!meFirst) {
+        // menu disappears if enemy goes first
+        $(".options").toggle();
         $(".display").html(
             "<h3>" + $("#enemy-name").html() + " used " + moveName + "</h3>"
         )
     } else {
-        $(".display").append(
-            "<h3>" + $("#enemy-name").html() + " used " + moveName + "</h3>"
-        )
+        window.setTimeout(function() {
+            enemyHP = $("#enemy-current-hp").html();
+            // if enemy health is 0, do not display next move
+            if (enemyHP == 0) {
+                return;
+            }
+            $(".display").append(
+                "<h3>" + $("#enemy-name").html() + " used " + moveName + "</h3>"
+            )
+        }, timeout);
+        timeout += 1000;
     }
-    if (powerMult > movePower) {
-        $(".display").append("<h3>It was super effective!</h3>");
-    } else if (powerMult == 0) {
-        $(".display").append("<h3>It had no effect :(</h3>");
-    } else if (powerMult < movePower) {
-        $(".display").append("<h3>It was not very effective...</h3>");
-    }
+    window.setTimeout(function() {
+        enemyHP = $("#enemy-current-hp").html();
+        // if enemy health is 0, display winning message and end function
+        if (enemyHP == 0) {
+            $(".display").html(
+                "<h3 class='win'>You win! :D</h3>" + 
+                "<a href='/dashboard'>Return to Dashboard</a>"
+            );
+            return;
+        }
+        flash(600, 300, $(".back-sprite"));
+        $("#my-current-hp").html(myNewHP);
+        $(".my-healthpoints").css("width", myHPBar + "%");
+        if (powerMult > movePower) {
+            $(".display").append("<h3>It was super effective!</h3>");
+        } else if (powerMult == 0) {
+            $(".display").append("<h3>It had no effect :(</h3>");
+        } else if (powerMult < movePower) {
+            $(".display").append("<h3>It was not very effective...</h3>");
+        }
+        myHP = $("#my-current-hp").html();
+        // if my health is 0, display losing message and end function
+        if (myHP == 0) {
+            $(".display").html(
+                "<h3 class='lose'>You lose :(</h3>" + 
+                "<a href='/dashboard'>Return to Dashboard</a>"
+            );
+            return;
+        }
+        // menu reappears if you go first
+        if (meFirst) {
+            $(".options").toggle();
+        }
+    }, timeout);
 }
 
 $(document).ready(function() {
