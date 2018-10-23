@@ -11,6 +11,7 @@ class PokemonManager(models.Manager):
 
 class Pokemon(models.Model):
     name = models.CharField(max_length = 255)
+    desc = models.CharField(max_length = 255)
     health = models.IntegerField()
     speed = models.IntegerField()
     tier = models.IntegerField()
