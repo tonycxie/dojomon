@@ -14,6 +14,17 @@ def wild_encounter(request, number):
     #     get_pokemon.back_sprite = pokemon["sprites"]["back_default"]
     #     get_pokemon.save()
 
+    # loop for adding pokemon descriptions
+    # for i in range(1, 152):
+    #     response = requests.get("https://pokeapi.co/api/v2/pokemon-species/" + str(i))
+    #     pokemon = response.json()
+    #     get_pokemon = Pokemon.objects.get(id = i)
+    #     for desc in pokemon["flavor_text_entries"]:
+    #         if desc["language"]["name"] == "en" and desc["version"]["name"] == "alpha-sapphire":
+    #             get_pokemon.desc = desc["flavor_text"]
+    #             get_pokemon.save()
+    #             continue
+
     # loop for adding moves from pokemon api into database
     # for i in range(1, 720):
     #     response = requests.get("https://pokeapi.co/api/v2/move/" + str(i))
@@ -50,3 +61,12 @@ def get_moves(request):
     pokemon = Pokemon.objects.get(name = request.POST["pokemon"])
     moves = Moves.objects.filter(moves_pokemon = pokemon)
     return HttpResponse(serializers.serialize("json", moves), content_type = "application/json")
+
+
+def add_pokemon(request, number):
+    trainer = Trainers.objects.get(email = request.session["email"])
+    pokemon = Pokemon.objects.get(id = number)
+    trainer.trainers_pokemon.add(pokemon)
+    trainer.trainer_level += pokemon.tier
+    trainer.save()
+    return redirect("/dashboard")
