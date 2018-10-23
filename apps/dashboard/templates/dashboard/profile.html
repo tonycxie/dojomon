@@ -25,10 +25,10 @@
 
             <ul class="list-unstyled components">
                 <li>
-                    <p>Ash Ketchup</p>
+                    <p>{{request.session.first_name}}</p>
                 </li>
                 <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/dashboard/profile">Profile</a></li>
+                <li><a href="/dashboard/profile/{{request.session.userid}}">Profile</a></li>
                 <li><a href="">edit team</a></li>
                 <li><a href="">pokemon</a></li>
                 <li><a href="">trade requests</a></li>
@@ -41,18 +41,33 @@
             <div class="container-fluid">
                 <div class="trainer-card">
                     <h3>Trainer Card</h3>
-                    <img class="trainer-sprite col-2" src="{% static 'dashboard/images/politoed.png'%}" alt="">
+                    {% if request.session.userid == trainer.id %}
+                    <img class="trainer-sprite col-2" src="{{trainer.character_sprite}}"
+                        alt="">
+                    {%else%}
+                    <img class="other-trainer-sprite col-2" src="{{trainer.character_sprite}}"
+                        alt="">
+                    {%endif%}
+
                     <div class="trainer-info col-9">
                         <p>Name: {{trainer.first_name}}</p>
                         <p>Trainer Level: {{trainer.trainer_level}}</p>
                         <p>Pokemon Found: {{trainer.trainers_pokemon.count}}</p>
                     </div>
                     <div class="player-party row">
-                            {% for sprite in trainers_pokemon %}
-                            <div class="pokemon-img">
-                                <img src="{{sprite.front_sprite}}">
-                            </div>
-                            {%endfor%}
+                        {% for sprite in trainers_team %}
+                        <div class="pokemon-img">
+                            <img src="{{sprite.front_sprite}}">
+                        </div>
+                        {%endfor%}
+                    </div>
+                    <div class="edit-sprites row">
+                        <div class="sprites-wrapper"></div>
+                        <form id="sprite-form" action="/dashboard/save_sprite" method="post">
+                            {% csrf_token %}
+                            <input id="characters-sprite" type="hidden" name="character_sprite" value="{{trainer.character_sprite}}">
+                            <button type="submit" id="save-sprite" class="btn btn-primary">save</button>
+                        </form>
                     </div>
                 </div>
                 <div class="pokedex-wrapper container-fluid">
@@ -61,15 +76,20 @@
                         <button class="btn btn-primary" id="all">all</button>
                         <button class="btn btn-primary" id="found">found</button>
                         <button class="btn btn-primary" id="unknown">unknown</button>
+                        <button id="tier1" class="btn btn-primary">tier 1</button>
+                        <button id="tier2" class="btn btn-primary">tier 2</button>
+                        <button id="tier3" class="btn btn-primary">tier 3</button>
+                        <button id="tier4" class="btn btn-primary">tier 4</button>
+                        <button id="tier5" class="btn btn-primary">tier 5</button>
                     </div>
                     <div id="pokedex">
                         {% for sprite in all_pokemon %}
                         {% if sprite in trainer.trainers_pokemon.all %}
-                        <div class="sprite found">
+                        <div class="sprite found tier{{sprite.tier}}">
                             <img src="{{sprite.front_sprite}}" alt="">
                         </div>
                         {% else %}
-                        <div class="sprite">
+                        <div class="sprite tier{{sprite.tier}}">
                             <img src="{{sprite.front_sprite}}" alt="">
                         </div>
                         {% endif %}
