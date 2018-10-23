@@ -89,6 +89,10 @@ p, .enemy-healthbar, .my-healthbar {
     outline: 1px solid black;
 }
 
+a {
+    color: black;
+}
+
 h3 {
     margin: 2%;
 }
