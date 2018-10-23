@@ -240,7 +240,7 @@ function myMove() {
             if (enemyHP == 0) {
                 $(".display").html(
                     "<h3 class='win'>You win! :D</h3>" + 
-                    "<a href='/dashboard'>Return to Dashboard</a>"
+                    "<a href='/battle/add_pokemon/" + $("#enemy-number").val() + "'>Return to Dashboard</a>"
                 );
                 return;
             }
@@ -309,7 +309,7 @@ function enemyMove() {
         if (enemyHP == 0) {
             $(".display").html(
                 "<h3 class='win'>You win! :D</h3>" + 
-                "<a href='/dashboard'>Return to Dashboard</a>"
+                "<a href='/battle/add_pokemon/" + $("#enemy-number").val() + "'>Return to Dashboard</a>"
             );
             return;
         }

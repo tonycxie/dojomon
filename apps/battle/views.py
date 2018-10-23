@@ -50,3 +50,12 @@ def get_moves(request):
     pokemon = Pokemon.objects.get(name = request.POST["pokemon"])
     moves = Moves.objects.filter(moves_pokemon = pokemon)
     return HttpResponse(serializers.serialize("json", moves), content_type = "application/json")
+
+
+def add_pokemon(request, number):
+    trainer = Trainers.objects.get(email = request.session["email"])
+    pokemon = Pokemon.objects.get(id = number)
+    trainer.trainers_pokemon.add(pokemon)
+    trainer.trainer_level += pokemon.tier
+    trainer.save()
+    return redirect("/dashboard")

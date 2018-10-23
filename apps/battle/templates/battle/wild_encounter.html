@@ -18,6 +18,7 @@
         <div class="enemy-box">
             <div class="enemy-info">
                 <p id="enemy-name">{{ wild_pokemon.name|upper }}</p>
+                <input type="hidden" name="enemy-number" id="enemy-number" value="{{ wild_pokemon.id }}">
                 {% for type in wild_types %}
                 <input type="hidden" class="enemy-types" value="{{ type.name }}">
                 {% endfor %}
