@@ -38,7 +38,10 @@ def wild_encounter(request, number):
     lead_id = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = 1).teams_pokemon_id 
     context = {
         "wild_pokemon": Pokemon.objects.get(id = number),
+        "wild_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = number)),
+        "wild_moves": Moves.objects.filter(moves_pokemon = Pokemon.objects.get(id = number)),
         "first_pokemon": Pokemon.objects.get(id = lead_id),
+        "first_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = lead_id))
     }
     return render(request, "battle/wild_encounter.html", context)
 
