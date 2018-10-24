@@ -39,7 +39,7 @@
         <div id="content">
             <div><a id="collapse-btn"><i class="fa fa-bars" aria-hidden="true"></i></a></div>
             <div class="container-fluid row">
-                <div class="col-5">
+                <div class="col-6">
                     <div class="trainer-card">
                         <h3>Trainer Card</h3>
                         {% if request.session.userid == trainer.id %}
@@ -53,14 +53,14 @@
                             <p>Trainer Level: {{trainer.trainer_level}}</p>
                             <p>Pokemon Found: {{trainer.trainers_pokemon.count}}</p>
                         </div>
-                        <div class="player-party row">
+                        <div class="player-party container-fluid">
                             {% for sprite in trainers_team %}
                             <div class="pokemon-img">
                                 <img src="{{sprite.front_sprite}}">
                             </div>
                             {%endfor%}
                         </div>
-                        <div class="edit-sprites row">
+                        <div class="edit-sprites">
                             <div class="sprites-wrapper"></div>
                             <form id="sprite-form" action="/dashboard/save_sprite" method="post">
                                 {% csrf_token %}
@@ -82,11 +82,13 @@
                                 <p class="number"></p>
                             </div>
                         </div>
-                        <div class="row bottom"></div>
+                        <div class="row bottom">
+                            <p class="description"></p>
+                        </div>
                         
                     </div>
                 </div>
-                <div class="pokedex-wrapper col-6 container-fluid">
+                <div class="pokedex-wrapper col-5 container-fluid">
                     <h4>Pokedex</h4>
                     <div class="filter">
                         <button class="btn btn-primary" id="all">all</button>

@@ -39,7 +39,7 @@
         <div id="content">
             <div><a id="collapse-btn"><i class="fa fa-bars" aria-hidden="true"></i></a></div>
             <div class="container-fluid row">
-                <div class="col-6">
+                <div class="col-5">
                     <div class="party-wrapper">
                         <h3>Your Team</h3>
                         <div id="player-party">
@@ -55,24 +55,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-7">
                     <div id="players-display">
-                        <h4>Trainers!</h4>
-                        <div class="all_trainers">
-                            {% for trainer in all_trainers %}
-                            {% if trainer.id != request.session.userid %}
-                            <p><a href="/dashboard/profile/{{trainer.id}}">{{trainer.first_name}} {{trainer.last_name}}</a></p>
-                            {% endif %}
-                            {% endfor %}
+                        <div id="date-time">
+                            <p id="time"></p>
+                            <p id="date"></p>
+                        </div>
+                        <div class="trainers-wrapper">
+                            <h4>Trainers!</h4>
+                            <div class="all_trainers">
+                                {% for trainer in all_trainers %}
+                                {% if trainer.id != request.session.userid %}
+                                <p><a href="/dashboard/profile/{{trainer.id}}">{{trainer.first_name}}
+                                        {{trainer.last_name}}</a></p>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
-                    <form class="encounter-wrapper" action="/dashboard/encounter" method="GET">
-                        <button type="submit" id="encounter-btn" class="btn btn-primary">Explore the wild!
-                        </button>
-                    </form>
-                    <form class="battle-trainers-wrapper" action="/battle/battle_trainers" method="GET">
-                        <button class="btn" >Battle Trainers!</button>
-                    </form>
+                    <div class="form-wrapper">
+                        <form class="encounter-wrapper" action="/dashboard/encounter" method="GET">
+                            <div class="button-wrapper">
+                                <button type="submit" id="encounter-btn" class="btn btn-primary">Explore the wild!
+                                </button>
+                            </div>
+
+                        </form>
+                        <form class="battle-trainers-wrapper" action="/battle/battle_trainers" method="GET">
+                            <div class="button-wrapper">
+                                <button class="btn">Battle Trainers!</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
