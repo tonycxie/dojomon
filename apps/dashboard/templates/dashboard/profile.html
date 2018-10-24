@@ -39,7 +39,7 @@
         <div id="content">
             <div><a id="collapse-btn"><i class="fa fa-bars" aria-hidden="true"></i></a></div>
             <div class="container-fluid row">
-                <div class="col-6">
+                <div class="col-5">
                     <div class="trainer-card">
                         <h3>Trainer Card</h3>
                         {% if request.session.userid == trainer.id %}
@@ -110,9 +110,9 @@
                         {% else %}
                         <form class="sprite tier{{sprite.tier}}" action="/dashboard/view_pokemon/{{sprite.id}}" method="post">
                             {% csrf_token %}
-                            <button type="submit">
+                            <button type="submit" disabled>
                                 <img class="sprite-img" src="{{sprite.front_sprite}}" alt="">
-                            </button >
+                            </button>
                         </form>
                         {% endif %}
                         {% endfor %}

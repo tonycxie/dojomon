@@ -1,5 +1,5 @@
 body * {
-    /* outline: 1px solid pink; */
+    outline: 1px solid pink;
     margin: 0;
     padding: 0;
 }
@@ -15,7 +15,7 @@ body * {
     border: 1px solid black;
     border-radius: .5em;
     background-color: whitesmoke;
-    margin-top: 2em;
+    /* margin-top: 2em; */
 }
 
 .trainer-card > h3 {
@@ -95,7 +95,7 @@ img.character-sprite {
 
 
 div.pokedex-wrapper {
-    margin: 2em 0;
+    /* margin: 2em 0; */
     width: 800px;
     padding: 1em;
     border: 1px solid black;
@@ -104,14 +104,14 @@ div.pokedex-wrapper {
 
 .filter {
     width: 90%;
-    padding: .5em;
+    padding: 1em;
     margin: 1em auto;
     border: 1px solid black;
 }
 
 #pokedex {
     margin: 0 auto;
-    padding: .5em;
+    /* padding: .5em; */
     height: 600px;
     width: 90%;
     border: 1px solid black;
