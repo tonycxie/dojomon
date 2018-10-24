@@ -8,7 +8,7 @@
 } */
 
 #wrapper {
-    background-color: #f1f3f0;
+    background-image: linear-gradient(to left, rgb(180, 180, 180), rgb(94, 92, 92));
 }
 
 body * {
@@ -34,6 +34,9 @@ div.party-wrapper {
     text-align: center;
     /* margin-bottom: .5em; */
     padding: .5em;
+    color: white;
+    font-weight: bold;
+    /* border: 3px solid black; */
 }
 
 #player-party {
@@ -41,8 +44,8 @@ div.party-wrapper {
     border-radius: .5em;
     width: 50%;
     margin: 0 auto;
-    padding: 1em;
-    background-color: #8a8c8d;
+    padding: 1.5em;
+    background-color: #194787;
 }
 
 .name, .pokemon-img {
@@ -71,21 +74,56 @@ div.party-wrapper {
     padding: 2em;
     display: inline-block;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#players-display h4 {
-    width: 80%;
-    margin: 0 auto;
+.trainers-wrapper > h4 {
+    /* width: 80%; */
+    /* margin: 0 auto; */
     font-size: bold;
 }
 
+#date-time {
+    /* width: 40%; */
+    /* text-align: center; */
+    height: 200px;
+    color: white;
+    background-color: #27496d;
+}
+
+#date-time > p {
+    text-align: center;
+}
+
+p#time {
+    font-size: 40pt;
+    font-weight: bold;
+}
+
+.trainers-wrapper {
+    height: 200px;
+    background-color: #F5F7EA;
+}
+
+#date-time, .trainers-wrapper {
+    display: inline-block;
+    vertical-align: top;
+    margin: auto;
+    width: 45%;
+    padding: 2%;
+    border: 3px solid black;
+    border-radius: .5em;
+}
+
 .all_trainers {
-    width: 80%;
+    width: 100%;
     border: 1px solid black;
     border-radius: .5em;
-    margin: 0 auto;
-    height: 200px;
+    /* height: 100%; */
     overflow-y: auto;
+    background-color: white;
 }
 
 .all_trainers > p {
@@ -93,46 +131,74 @@ div.party-wrapper {
     margin: .25em;
 }
 
-.all_trainers p > a {
-    color: black;
+.all_trainers p > a { color: black; }
+
+.form-wrapper {
+    height: 450px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.battle-trainers-wrapper {
+    background-image: url("/static/dashboard/images/comfy_shorts.gif");
+    background-size: cover;
+    background-position-y: -10em;
+    background-repeat: no-repeat;
+    border: 3px dotted black;
+}
+
+.encounter-wrapper {
+    background-image: url("/static/dashboard/images/ditto.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 3px dotted black;
 }
 
 .encounter-wrapper, .battle-trainers-wrapper {
-    width: 80%;
-    margin: 2em auto;
-    text-align: center;
+    width: 45%;
+    height: 48%;
+    padding: 8%;
+    display: inline-block;
+    margin: auto;
 }
 
-.encounter-wrapper > button, .battle-trainers-wrapper > button {
-    width: 50%;
-    margin: 1em auto;
+div.button-wrapper {
+    width: 100%;
     height: 60px;
+}
+
+.button-wrapper > button {
+    width: 100%;
+    height: 100%;
     font-weight: bold;
     color: white;
+    vertical-align: 0;
 }
 
-.encounter-wrapper > button:active {
+.encounter-wrapper > .button-wrapper > button:active {
     box-shadow: 1em 1em  1em #27496d;
     transform: translateY(5px);
     outline: 0;
 }
 
-.encounter-wrapper > button {
+.encounter-wrapper > .button-wrapper > button {
     box-shadow: .25em .25em 0em rgb(10, 10, 165);
 }
 
 
-.battle-trainers-wrapper > button {
+.battle-trainers-wrapper > .button-wrapper > button {
     background-color: rgb(255, 22, 22);
     box-shadow: .25em .25em 0em rgb(155, 20, 15);
 }
 
-.battle-trainers-wrapper > button:active {
+.battle-trainers-wrapper > .button-wrapper > button:active {
     box-shadow: .1em .1em .1em #740e0e;
     transform: translateY(3px);
     outline: 0;
 }
 
-.battle-trainers-wrapper > button:hover {
+.battle-trainers-wrapper > .button-wrapper > button:hover {
     background-color: rgb(226, 1, 1);
 }
