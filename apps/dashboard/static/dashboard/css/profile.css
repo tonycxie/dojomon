@@ -58,10 +58,10 @@ img.trainer-sprite:hover {
 }
 
 .player-party, .edit-sprites {
-    width: 92%;
+    width: 93%;
     height: 30%;
     margin: 1.5em;
-    border: 1px solid rgb(87, 82, 82);
+    border: 3px dotted rgb(87, 82, 82);
     border-radius: .5em;
 }
 
@@ -192,7 +192,7 @@ form > button {
 }
 
 .img-wrapper {
-    border-right: 1px solid black;
+    border-right: 3px dotted black;
     padding: .5em;
 }
 
@@ -202,7 +202,7 @@ div.top .poke-info p {
 }
 
 div.bottom {
-    border-top: 1px solid black;
+    border-top: 3px dotted black;
 }
 
 form {
