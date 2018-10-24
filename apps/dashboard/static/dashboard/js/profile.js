@@ -100,7 +100,7 @@ function displayPokemonInfo(response) {
     console.log(types)
     console.log(pokemon[0])
     let pokeName = pokemon[0].fields.name;
-    $(".name").text(pokeName.charAt(0).toUpperCase() + pokeName.slice(1));
+    $(".info-name").text(pokeName.charAt(0).toUpperCase() + pokeName.slice(1));
     $(".health").text("Health: " + pokemon[0].fields.health)
     $(".speed").text("Speed: " + pokemon[0].fields.speed)
     $(".img-wrapper > img").attr("src", pokemon[0].fields.front_sprite);
