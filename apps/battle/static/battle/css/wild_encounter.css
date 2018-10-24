@@ -9,6 +9,9 @@ html,body{
     rgba(24%, 48%, 80%, 0.9),
     rgba(24%, 48%, 80%, 0.9)
   ), url("http://wallpapercave.com/wp/ZqCwNUM.jpg");
+  /* background: url("/apps/battle/static/battle/images/pokebackground.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat; */
 }
 
 body {

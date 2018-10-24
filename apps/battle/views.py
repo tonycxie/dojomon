@@ -66,7 +66,8 @@ def get_moves(request):
 def add_pokemon(request, number):
     trainer = Trainers.objects.get(email = request.session["email"])
     pokemon = Pokemon.objects.get(id = number)
-    trainer.trainers_pokemon.add(pokemon)
-    trainer.trainer_level += pokemon.tier
-    trainer.save()
+    if Trainers.objects.filter(email = request.session["email"], trainers_pokemon = pokemon).count() == 0:
+        trainer.trainers_pokemon.add(pokemon)
+        trainer.trainer_level += pokemon.tier
+        trainer.save()
     return redirect("/dashboard")
