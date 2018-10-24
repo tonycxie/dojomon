@@ -168,12 +168,16 @@ function flash(time, interval, img) {
 function myMove() {
     $(".move").click(function() {
         // if your pokemon is faster, it will go first
-        let mySpeed = $("#my-speed").val();
-        let enemySpeed = $("#enemy-speed").val();
+        let mySpeed = parseInt($("#my-speed").val());
+        let enemySpeed = parseInt($("#enemy-speed").val());
+        console.log(mySpeed)
+        console.log(enemySpeed)
         if (mySpeed > enemySpeed) {
+            console.log("im fast")
             meFirst = true;
         // if the enemy pokemon is faster, it will go first and then you will go
         } else {
+            console.log("im slow")
             meFirst = false;
             enemyMove();
             if (myCurrentHP <= 0) {
@@ -397,8 +401,6 @@ function enemyMove() {
 function nextPokemon(orderNumber) {
     $("#switch_form").submit(function(e) {
         e.preventDefault();
-        console.log("Sending request to " + $(this).attr("action"))
-        console.log("Sending response " + $(this).serialize())
         $.ajax( {
             url: $(this).attr("action"),
             method: "post",
@@ -413,8 +415,6 @@ function nextPokemon(orderNumber) {
 function displayNextPokemon(response, orderNumber) {
     let pokemon = JSON.parse(response["next_pokemon"]);
     let types = JSON.parse(response["types"]);
-    console.log(pokemon)
-    console.log(types)
     let info = pokemon[0]["fields"];
     // response["types"] will be an array with one or two indices
     $("#my-number").attr("value", pokemon[0]["pk"]);

@@ -90,20 +90,3 @@ def switch_pokemon(request):
         "types": serializers.serialize("json", types)
     } 
     return HttpResponse(json.dumps(response), content_type = "application/json")
-
-# def switch_pokemon(request, enemy_id, enemy_hp, order_number):
-#     next_pokemon = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = order_number).teams_pokemon
-#     wild_pokemon = Pokemon.objects.get(id = enemy_id)
-#     request.session["enemy_hp"] = enemy_hp
-#     request.session["enemy_hp_width"] = int(enemy_hp) / int(wild_pokemon.health) * 100
-#     request.session["my-hp"] = next_pokemon.health
-#     request.session["my_hp_width"] = 100
-#     context = {
-#         "wild_pokemon": wild_pokemon,
-#         "wild_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = enemy_id)),
-#         "wild_moves": Moves.objects.filter(moves_pokemon = Pokemon.objects.get(id = enemy_id)),
-#         "my_pokemon": next_pokemon,
-#         "order_number": order_number,
-#         "my_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = next_pokemon.id))
-#     }
-#     return render(request, "battle/wild_encounter.html", context)
