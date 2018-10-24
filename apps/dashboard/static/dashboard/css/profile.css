@@ -122,7 +122,7 @@ div.pokedex-wrapper > h4 {
 
 #pokedex {
     margin: 2em auto;
-    /* padding: .5em; */
+    padding: .5em;
     height: 600px;
     width: 90%;
     border: 3px solid #3B4CCA;
