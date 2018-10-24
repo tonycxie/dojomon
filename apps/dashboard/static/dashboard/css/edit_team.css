@@ -1,0 +1,157 @@
+body * {
+    /* outline: 1px solid pink; */
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.party-wrapper > h3 {
+
+    text-align: center;
+    padding: .5em;
+    /* color: white; */
+    color: black;
+    font-weight: bold;
+}
+
+#player-party {
+    border: 1px solid black;
+    border-radius: .5em;
+    width: 50%;
+    margin: 0 auto;
+    padding: 1.5em;
+    background-color: #194787;
+}
+
+.name, .pokemon-img { display: inline-block; }
+
+.name {
+    margin-left: 2em;
+    padding: 0;
+}
+
+.pokemon-wrapper {
+    /* border: 1px solid black; */
+    border-radius: .5em;
+    background-color: #ffefef;
+    margin: .5em 0;
+}
+
+.pokemon-img {
+    padding: 0;
+    margin: 0;
+}
+
+.pokemon-img { display:inline-block; }
+
+.pokemon-img > img{
+    width: 90px;
+    height: 90px;
+    margin: 0;
+    padding: 0;
+}
+
+.trainer-card {
+    vertical-align: top;
+    display: inline-block;
+}
+
+
+div.pokedex-wrapper {
+    /* margin: 2em 0; */
+    width: 90%;
+    padding: 1em;
+    border: 3px solid #3B4CCA;
+    border-radius: .5em;
+    background-color: #FF0000;
+}
+
+div.pokedex-wrapper > h4 {
+    font-weight: bold;
+    color: white;
+    font-size: 22pt;
+    text-align: center;
+}
+
+.filter {
+    width: 90%;
+    padding: 1em;
+    margin: 1em auto;
+    border: 3px solid #3B4CCA;
+    border-radius: .5em;
+}
+
+#pokedex {
+    margin: 1em auto;
+    padding: .5em;
+    height: 390px;
+    width: 90%;
+    border: 3px solid #3B4CCA;
+    overflow-y: auto;
+    background-color: whitesmoke;
+    border-radius: .5em;
+}
+
+.sprite { display: inline-block; }
+
+.sprite > button > img {
+    border: none;
+    margin-top: .5em;
+    margin-left: .5em;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+form > button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+#pokemon-view {
+    width: 90%;
+    height: 30%;
+    margin: 0 auto;
+    border: 3px solid #3B4CCA;
+    border-radius: .5em;
+    padding: 0;
+    background-color: #ffefef;
+}
+
+
+#pokemon-view div.top {
+    height: 50%;
+}
+
+p.description {
+    font-size: 11pt;
+    text-align: left;
+    margin: .75em;
+}
+
+#pokemon-view .img-wrapper {
+    padding: 0;
+    border-right: 3px dotted black;
+}
+
+/* #pokemon-view .img-wrapper > img {
+    margin-right: 1.2em;
+} */
+
+div.top .poke-info p {
+    text-align: left;
+    font-size: 10pt;
+    margin: 0;
+    padding: 0;
+}
+
+div.bottom {
+    border-top: 3px dotted black;
+}
+
+
+.row {
+    margin: 0;
+}
