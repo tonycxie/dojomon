@@ -6,6 +6,11 @@
     height: 1000px;
     text-align: center;
 } */
+
+#wrapper {
+    background-color: #f1f3f0;
+}
+
 body * {
     /* outline: 1px solid pink; */
     margin: 0;
@@ -17,36 +22,61 @@ div.container-fluid {
     margin: 0;
 }
 
+/* div.col-6 {
+    text-align: center;
+} */
+
 div.party-wrapper {
-    padding: 2em;
+    /* padding: 1em; */
+}
+
+.party-wrapper > h3 {
+    text-align: center;
+    /* margin-bottom: .5em; */
+    padding: .5em;
 }
 
 #player-party {
     border: 1px solid black;
     border-radius: .5em;
-    width: 95%;
+    width: 50%;
+    margin: 0 auto;
+    padding: 1em;
+    background-color: #8a8c8d;
 }
 
- /* use flex box for this section */
-.pokemon-img {
+.name, .pokemon-img {
     display: inline-block;
-    padding: .2em;
-    margin: 1em .3em;
 }
 
-#player-party .pokemon-img > img {
-    width: 80px;
-    height: 80px;
+.name {
+    margin-left: 2em;
+    padding: 0;
+}
+
+.pokemon-wrapper {
+    border: 1px solid black;
+    border-radius: .5em;
+    background-color: #ffefef;
+    margin: .5em 0;
+}
+
+
+.pokemon-img {
+    padding: 0;
+    margin: 0;
 }
 
 #players-display {
     padding: 2em;
     display: inline-block;
+    width: 100%;
 }
 
 #players-display h4 {
     width: 80%;
     margin: 0 auto;
+    font-size: bold;
 }
 
 .all_trainers {
@@ -65,4 +95,44 @@ div.party-wrapper {
 
 .all_trainers p > a {
     color: black;
+}
+
+.encounter-wrapper, .battle-trainers-wrapper {
+    width: 80%;
+    margin: 2em auto;
+    text-align: center;
+}
+
+.encounter-wrapper > button, .battle-trainers-wrapper > button {
+    width: 50%;
+    margin: 1em auto;
+    height: 60px;
+    font-weight: bold;
+    color: white;
+}
+
+.encounter-wrapper > button:active {
+    box-shadow: 1em 1em  1em #27496d;
+    transform: translateY(5px);
+    outline: 0;
+}
+
+.encounter-wrapper > button {
+    box-shadow: .25em .25em 0em rgb(10, 10, 165);
+}
+
+
+.battle-trainers-wrapper > button {
+    background-color: rgb(255, 22, 22);
+    box-shadow: .25em .25em 0em rgb(155, 20, 15);
+}
+
+.battle-trainers-wrapper > button:active {
+    box-shadow: .1em .1em .1em #740e0e;
+    transform: translateY(3px);
+    outline: 0;
+}
+
+.battle-trainers-wrapper > button:hover {
+    background-color: rgb(226, 1, 1);
 }
