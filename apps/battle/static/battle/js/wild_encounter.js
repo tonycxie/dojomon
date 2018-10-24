@@ -116,6 +116,8 @@ const moveEffectiveness = {
 };
 
 var meFirst = false;
+var myCurrentHP = 0;
+var enemyCurrentHP = 0;
 
 function displayMoves() {
     $("#moves_form").submit(function(e) {
@@ -166,12 +168,17 @@ function flash(time, interval, img) {
 function myMove() {
     $(".move").click(function() {
         // if your pokemon is faster, it will go first
-        if ($("#my-speed").val() >= $("#enemy-speed").val()) {
+        let mySpeed = $("#my-speed").val();
+        let enemySpeed = $("#enemy-speed").val();
+        if (mySpeed > enemySpeed) {
             meFirst = true;
         // if the enemy pokemon is faster, it will go first and then you will go
         } else {
             meFirst = false;
             enemyMove();
+            if (myCurrentHP <= 0) {
+                return;
+            }
         }
         let timeout = 0;
         // adjusts when animations appear based on which pokemon goes first
@@ -180,13 +187,20 @@ function myMove() {
         } else {
             timeout = 3000;
         }
-        let myHP = $("#my-current-hp").html();
+        myCurrentHP = $("#my-current-hp").html();
+
+        if ($("#enemy-current-hp").html() == $("#enemy-start-hp").html()) {
+            enemyCurrentHP = $("#enemy-current-hp").html();
+        }
+        if ($("#my-current-hp").html() == $("#my-start-hp").html()) {
+            myCurrentHP = $("#my-current-hp").html();
+        }
+
         let myName = $("#my-name").html();
         let orderNumber = $("#order-number").val();
         let move = $(this).find("h3").html();
         let attackType = $(this).find(".type").val();
         let power = $(this).find(".power").val();
-        let enemyID = $("#enemy-number").val();
         let enemyHP = $("#enemy-current-hp").html();
         let enemyTypes = $(".enemy-info .enemy-types");
         let powerMult = power;
@@ -199,6 +213,11 @@ function myMove() {
         }
         let startHP = $("#enemy-start-hp").html();
         let enemyHPBar = newEnemyHP / startHP * 100;
+        // console.log("current " + myCurrentHP);
+        if (myCurrentHP <= 0) {
+            console.log("you lose");
+            return;
+        }
         if (meFirst) {
             // menu disappears if you go first
             $(".options").toggle(); 
@@ -207,9 +226,8 @@ function myMove() {
             )
         } else {
             window.setTimeout(function () {
-                myHP = $("#my-current-hp").html();
                 // if my health is 0, do not display next move
-                if (myHP == 0) {
+                if (myCurrentHP <= 0) {
                     return;
                 }
                 $(".display").append(
@@ -219,15 +237,17 @@ function myMove() {
             timeout += 1000;   
         }
         window.setTimeout(function() {
-            myHP = $("#my-current-hp").html();
             // if my health is 0, display losing message and end function
-            if (myHP == 0) {
+            if (myCurrentHP <= 0 && !meFirst) {
                 orderNumber = parseInt(orderNumber) + 1;
                 $(".display").html(
-                    "<h3>" + myName + " fainted!</h3>" +                     
-                    "<a href='/battle/switch_pokemon/" + enemyID + "/" + newEnemyHP + "/" + 
-                    orderNumber + "'>Next Pokémon</a>"
+                    "<h3>" + myName + " fainted!</h3>" +   
+                    "<form action='/battle/switch_pokemon' method='post' id='switch_form'>" + 
+                        "<input type='hidden' name='next-order' id='next-order' value='" + 
+                        orderNumber + "'>" +
+                        "<button type='submit' id='switch'>Next Pokemon</button>"                
                 );
+                nextPokemon(orderNumber);
                 return;
             }
             flash(600, 300, $(".front-sprite"));
@@ -245,9 +265,9 @@ function myMove() {
             } else if (powerMult < power) {
                 $(".display").append("<h3>It was not very effective...</h3>");
             }
-            enemyHP = $("#enemy-current-hp").html();
+            enemyCurrentHP = newEnemyHP;
             // if enemy health is 0, display winning message and end function
-            if (enemyHP == 0) {
+            if (enemyCurrentHP <= 0) {
                 $(".display").html(
                     "<h3 class='win'>You win! :D</h3>" + 
                     "<a href='/battle/add_pokemon/" + $("#enemy-number").val() + "'>Return to Dashboard</a>"
@@ -262,7 +282,7 @@ function myMove() {
             }
         }, timeout);
         // enemy pokemon will attack after you if you are faster
-        if (meFirst) {
+        if (meFirst && enemyCurrentHP > 0) {
             enemyMove();
         }
     });
@@ -278,11 +298,17 @@ function enemyMove() {
         timeout = 1000;
     }
     let enemyMoves = $(".enemy-moves input");
+
+    if ($("#my-current-hp").html() == $("#my-start-hp").html()) {
+        myCurrentHP = $("#my-current-hp").html();
+    }
+    if ($("#enemy-current-hp").html() == $("#enemy-start-hp").html()) {
+        enemyCurrentHP = $("#enemy-current-hp").html();
+    }
+
     let myHP = $("#my-current-hp").html();
     let myName = $("#my-name").html();
     let orderNumber = $("#order-number").val();
-    let enemyID = $("#enemy-number").val();
-    let enemyHP = $("#enemy-current-hp").html();
     let randInt = Math.floor(Math.random() * Math.floor(enemyMoves.length));
     let randMove = enemyMoves[randInt];
     let typeIndex = parseInt(randMove.className);
@@ -295,6 +321,7 @@ function enemyMove() {
         powerMult *= moveEffectiveness[moveType][myTypes[i].defaultValue];
     }
     let myNewHP = myHP - powerMult;
+    myCurrentHP = myNewHP;
     if (myNewHP < 0) {
         myNewHP = 0;
     }
@@ -308,11 +335,10 @@ function enemyMove() {
         )
     } else {
         window.setTimeout(function() {
-            enemyHP = $("#enemy-current-hp").html();
             // if enemy health is 0, do not display next move
-            if (enemyHP == 0) {
+            if (enemyCurrentHP <= 0) {
                 return;
-            }
+            } 
             $(".display").append(
                 "<h3>" + $("#enemy-name").html() + " used " + moveName + "</h3>"
             )
@@ -320,9 +346,10 @@ function enemyMove() {
         timeout += 1000;
     }
     window.setTimeout(function() {
-        enemyHP = $("#enemy-current-hp").html();
+        console.log("enemy hp is " + enemyCurrentHP)
         // if enemy health is 0, display winning message and end function
-        if (enemyHP == 0) {
+        if (enemyCurrentHP <= 0) {
+            console.log("winner!")
             $(".display").html(
                 "<h3 class='win'>You win! :D</h3>" + 
                 "<a href='/battle/add_pokemon/" + $("#enemy-number").val() + "'>Return to Dashboard</a>"
@@ -344,15 +371,18 @@ function enemyMove() {
         } else if (powerMult < movePower) {
             $(".display").append("<h3>It was not very effective...</h3>");
         }
-        myHP = $("#my-current-hp").html();
+        myCurrentHP = myNewHP;
         // if my health is 0, display losing message and end function
-        if (myHP == 0) {
+        if (myCurrentHP <= 0) {
             orderNumber = parseInt(orderNumber) + 1;            
             $(".display").html(
-                "<h3>" + myName + " fainted!</h3>" + 
-                "<a href='/battle/switch_pokemon/" + enemyID + "/" + enemyHP + "/" + 
-                orderNumber + "'>Next Pokémon</a>"
+                "<h3>" + myName + " fainted!</h3>" +   
+                "<form action='/battle/switch_pokemon' method='post' id='switch_form'>" + 
+                    "<input type='hidden' name='next-order' id='next-order' value='" + 
+                    orderNumber + "'>" +
+                    "<button type='submit' id='switch'>Next Pokemon</button>" 
             );
+            nextPokemon(orderNumber);
             return;
         }
         // menu reappears if you go first
@@ -362,6 +392,51 @@ function enemyMove() {
             }, 1000);
         }
     }, timeout);
+}
+
+function nextPokemon(orderNumber) {
+    $("#switch_form").submit(function(e) {
+        e.preventDefault();
+        console.log("Sending request to " + $(this).attr("action"))
+        console.log("Sending response " + $(this).serialize())
+        $.ajax( {
+            url: $(this).attr("action"),
+            method: "post",
+            data: $(this).serialize(),
+            success: function(response) {
+                displayNextPokemon(response, orderNumber);
+            }
+        });
+    });
+}
+
+function displayNextPokemon(response, orderNumber) {
+    let pokemon = JSON.parse(response["next_pokemon"]);
+    let types = JSON.parse(response["types"]);
+    console.log(pokemon)
+    console.log(types)
+    let info = pokemon[0]["fields"];
+    // response["types"] will be an array with one or two indices
+    $("#my-number").attr("value", pokemon[0]["pk"]);
+    $("#order-number").attr("value", orderNumber);
+    let myTypes = "";
+    for (let i = 0; i < types.length; i++) {
+        myTypes += "<input type='hidden' class='my-types' value='" + 
+                   types[i]["fields"]["name"] + "'>"; 
+    }
+    $("#current-types").html(myTypes);
+    $("#my-speed").attr("value", info["speed"]);
+    $("#my-name").html(info["name"].toUpperCase());
+    $(".my-healthpoints").css("width", "100%");
+    $(".my-healthpoints").css("background", "#2fbb00")
+    $("#my-current-hp").html(info["health"])
+    $("#my-start-hp").html(info["health"])
+    $(".back-sprite").attr("src", info["back_sprite"])
+    $("#pokemon").attr("value", info["name"])
+    $(".display").html(
+        "<h3 class='textbox'>What will " + info["name"].toUpperCase() + " do?</h3>"
+    );
+    $(".options").toggle();
 }
 
 $(document).ready(function() {

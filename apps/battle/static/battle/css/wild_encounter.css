@@ -2,25 +2,24 @@
 
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
 
-html,body{
+html,
+body {
   height: 100%;
-  background: 
-  linear-gradient(
-    rgba(24%, 48%, 80%, 0.9),
-    rgba(24%, 48%, 80%, 0.9)
-  ), url("http://wallpapercave.com/wp/ZqCwNUM.jpg");
+  background:
+    linear-gradient(rgba(24%, 48%, 80%, 0.9),
+    rgba(24%, 48%, 80%, 0.9)), url("http://wallpapercave.com/wp/ZqCwNUM.jpg");
   /* background: url("/apps/battle/static/battle/images/pokebackground.jpeg");
   background-size: cover;
   background-repeat: no-repeat; */
 }
 
 body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.title{
+.title {
   position: relative;
   margin-top: 10px;
   color: white;
@@ -30,7 +29,7 @@ body {
   font-family: "Roboto Condensed";
 }
 
-.battle-scene{
+.battle-scene {
   position: relative;
   margin: auto;
   display: block;
@@ -74,15 +73,17 @@ body {
   opacity: 0.5;
 }
 
-.enemy-healthpoints, .my-healthpoints {
+.enemy-healthpoints,
+.my-healthpoints {
   position: absolute;
   height: 100%;
+  width: 100%;
   border-radius: 20px;
   background: #2fbb00;
 
 }
 
-.box-top-right{
+.box-top-right {
   position: absolute;
   width: 40%;
   height: 25%;
@@ -92,7 +93,7 @@ body {
   background: #E0E0E0;
 }
 
-.pokemon-top{
+.pokemon-top {
   height: 150%;
   width: 50%;
   position: absolute;
@@ -100,7 +101,7 @@ body {
   left: 25%;
 }
 
-.pokemon-bottom{
+.pokemon-bottom {
   height: 150%;
   width: 50%;
   position: absolute;
@@ -109,8 +110,8 @@ body {
 }
 
 
-.box-bottom-left{
- position: absolute;
+.box-bottom-left {
+  position: absolute;
   width: 40%;
   height: 25%;
   border-radius: 50%;
@@ -124,14 +125,14 @@ body {
   width: 38%;
   height: 20%;
   border-radius: 10px;
-  bottom:20%;
+  bottom: 20%;
   right: 8%;
   background: #F8F8D8;
   border: 6px solid #506860;
   z-index: 2;
 }
 
-.pokemon{
+.pokemon {
   text-align: left;
   margin-left: 10%;
   margin-top: 5%;
@@ -140,7 +141,7 @@ body {
   font-family: "Roboto Condensed";
 }
 
-.level{
+.level {
   position: absolute;
   right: 8%;
   top: -11%;
@@ -149,7 +150,7 @@ body {
   font-family: "Roboto Condensed";
 }
 
-.hp{
+.hp {
   position: absolute;
   right: 8%;
   bottom: -10%;
@@ -158,7 +159,7 @@ body {
   font-family: "Roboto Condensed";
 }
 
-.bottom-menu{
+.bottom-menu {
   position: absolute;
   width: 98%;
   bottom: 0%;
@@ -176,8 +177,8 @@ body {
 }
 
 .display h3 {
-    margin: 1% 0 0 1%;
-    padding: 0;
+  margin: 1% 0 0 1%;
+  padding: 0;
 }
 
 .options {
@@ -188,53 +189,54 @@ body {
   height: 98%;
   background: #F8F8F8;
   border: solid 6px #6F677F;
-  
+
 }
 
-.display, .options {
-    display: inline-block;
-    vertical-align: top;
+.display,
+.options {
+  display: inline-block;
+  vertical-align: top;
 }
 
 .row {
-    width: 100%;
-    height: 50%;
-    text-align: center;
+  width: 100%;
+  height: 50%;
+  text-align: center;
 }
 
 .col {
-    width: 49%;
-    height: 100%;
-    display: inline-block;
-    text-align: center;
+  width: 49%;
+  height: 100%;
+  display: inline-block;
+  text-align: center;
 }
 
-button {
-    font-family: "PT Sans Narrow";
-    background-color: none;
-    height: 100%;
-    width: 100%;
-    font-size: 20pt;
-    background-color: transparent;
-    border: none;
+.col button, .row button {
+  font-family: "PT Sans Narrow";
+  height: 100%;
+  width: 100%;
+  font-size: 20pt;
+  background-color: transparent;
+  border: none;
 }
 
 form {
-    height: 100%;
+  height: 100%;
 }
 
 button a {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
-.move p, .move h3 {
-    padding: 0;
-    margin: 0;
+.move p,
+.move h3 {
+  padding: 0;
+  margin: 0;
 }
 
 .display .col {
-    outline: 1px solid black;
+  outline: 1px solid black;
 }
 
 .display a {
@@ -242,7 +244,7 @@ button a {
   text-decoration: none;
 }
 
-.battle-text{
+.battle-text {
   width: 60%;
   opacity: 0.95;
   font-size: 18px;
@@ -251,65 +253,73 @@ button a {
   font-family: "PT Sans Narrow";
 }
 
-@media all and (max-width: 600px) {
- .battle-scene{
-  position: relative;
-  margin: auto;
-  display: block;
-  margin-top: 3%;
-  width: 400px;
-  height: 280px;
-  background: #F8F8F8;
-  z-index: 1;
-}
-  
-  .title{
-  position: absolute;
-  top: -33%;
-  left: 7.5%;
-  color: white;
-  text-align: center;
-  font-size: 22px;
-  text-transform: uppercase;
-  font-family: "Roboto Condensed";
-}
-  
-  .pokemon{
-  text-align: left;
-  margin-left: 11%;
-  margin-top: 5%;
-  opacity: 0.7;
-  font-size: 14px;
-  font-family: "Roboto Condensed";
-}
-  
-  
-.level{
-  position: absolute;
-  right: 5%;
-  top: -13%;
-  opacity: 0.7;
-  font-size: 10px;
-  font-family: "Roboto Condensed";
-}
-  
-  .hp{
-  position: absolute;
-  right: 8%;
-  bottom: -20%;
-  opacity: 0.7;
-  font-size: 11px;
-  font-family: "Roboto Condensed";
-}
-  
-  .battle-text{
-  margin-top: 1%;
-  margin-left: 5%;
-  opacity: 0.95;
-  font-size: 10px;
-  color: white;
-  text-align: left;
+.battle-text button {
   font-family: "PT Sans Narrow";
+  font-size: 18pt;
+  background-color: transparent;
+  border: none;
+  color: white;
 }
+
+@media all and (max-width: 600px) {
+  .battle-scene {
+    position: relative;
+    margin: auto;
+    display: block;
+    margin-top: 3%;
+    width: 400px;
+    height: 280px;
+    background: #F8F8F8;
+    z-index: 1;
+  }
+
+  .title {
+    position: absolute;
+    top: -33%;
+    left: 7.5%;
+    color: white;
+    text-align: center;
+    font-size: 22px;
+    text-transform: uppercase;
+    font-family: "Roboto Condensed";
+  }
+
+  .pokemon {
+    text-align: left;
+    margin-left: 11%;
+    margin-top: 5%;
+    opacity: 0.7;
+    font-size: 14px;
+    font-family: "Roboto Condensed";
+  }
+
+
+  .level {
+    position: absolute;
+    right: 5%;
+    top: -13%;
+    opacity: 0.7;
+    font-size: 10px;
+    font-family: "Roboto Condensed";
+  }
+
+  .hp {
+    position: absolute;
+    right: 8%;
+    bottom: -20%;
+    opacity: 0.7;
+    font-size: 11px;
+    font-family: "Roboto Condensed";
+  }
+
+  .battle-text {
+    margin-top: 1%;
+    margin-left: 5%;
+    opacity: 0.95;
+    font-size: 10px;
+    color: white;
+    text-align: left;
+    font-family: "PT Sans Narrow";
+  }
 
 }
