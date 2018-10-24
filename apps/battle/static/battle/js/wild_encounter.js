@@ -228,6 +228,11 @@ function myMove() {
             flash(600, 300, $(".front-sprite"));
             $("#enemy-current-hp").html(newEnemyHP);
             $(".enemy-healthpoints").css("width", enemyHPBar + "%");
+            if (enemyHPBar < 20) {
+                $(".enemy-healthpoints").css("background", "red") 
+            } else if (enemyHPBar < 50) {
+                $(".enemy-healthpoints").css("background", "orange") 
+            }
             if (powerMult > power) {
                 $(".display").append("<h3>It was super effective!</h3>");
             } else if (powerMult == 0) {
@@ -246,7 +251,9 @@ function myMove() {
             }
             // menu reappears if enemy goes first
             if (!meFirst) {
-                $(".options").toggle();
+                window.setTimeout(function() {
+                    $(".options").toggle()
+                }, 1000);
             }
         }, timeout);
         // enemy pokemon will attack after you if you are faster
@@ -273,7 +280,7 @@ function enemyMove() {
     let moveType = types[typeIndex - 1];
     let movePower = parseInt(randMove.value);
     let moveName = randMove.name;
-    var powerMult = movePower;
+    let powerMult = movePower;
     let myTypes = $(".my-info .my-types");
     for (let i = 0; i < myTypes.length; i++) {
         powerMult *= moveEffectiveness[moveType][myTypes[i].defaultValue];
@@ -316,6 +323,11 @@ function enemyMove() {
         flash(600, 300, $(".back-sprite"));
         $("#my-current-hp").html(myNewHP);
         $(".my-healthpoints").css("width", myHPBar + "%");
+        if (myHPBar < 20) {
+            $(".my-healthpoints").css("background", "red") 
+        } else if (myHPBar < 50) {
+            $(".my-healthpoints").css("background", "orange") 
+        }
         if (powerMult > movePower) {
             $(".display").append("<h3>It was super effective!</h3>");
         } else if (powerMult == 0) {
@@ -334,7 +346,9 @@ function enemyMove() {
         }
         // menu reappears if you go first
         if (meFirst) {
-            $(".options").toggle();
+            window.setTimeout(function() {
+                $(".options").toggle()
+            }, 1000);
         }
     }, timeout);
 }

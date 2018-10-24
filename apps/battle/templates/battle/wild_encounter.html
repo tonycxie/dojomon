@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Wild Encounter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {% load static %}
     <link rel="stylesheet" href="{% static 'battle/css/wild_encounter.css' %}">
@@ -14,10 +13,10 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="enemy-box">
+    <div id="app">
+        <h1 class="title">Wild Encounter!</h1>
+        <div class="battle-scene">
             <div class="enemy-info">
-                <p id="enemy-name">{{ wild_pokemon.name|upper }}</p>
                 <input type="hidden" name="enemy-number" id="enemy-number" value="{{ wild_pokemon.id }}">
                 {% for type in wild_types %}
                 <input type="hidden" class="enemy-types" value="{{ type.name }}">
@@ -27,64 +26,59 @@
                     <input type="hidden" name="{{ move.name }}" class="{{ move.moves_type_id }}" value="{{ move.power }}">
                     {% endfor %}
                 </div>
-                <input type="hidden" id="enemy-speed" name="enemy-speed" value="{{ wild_pokemon.speed }}">
-                <div class="enemy-healthbar">
-                    <p class="hp">HP</p>
-                    <div class="enemy-hp-container">
-                        <div class="enemy-healthpoints"></div>
-                    </div>
+                <h2 class="pokemon" id="enemy-name">{{ wild_pokemon.name|upper }}</h2>
+                <div class="enemy-hp-container">
+                    <div class="enemy-healthpoints"></div>
                 </div>
-                <p class="health">
+                <h4 class="hp">
                     <span id="enemy-current-hp">{{ wild_pokemon.health }}</span>
                     / <span id="enemy-start-hp">{{ wild_pokemon.health }}</span>
-                </p>
+                </h4>
             </div>
-            <img src="{{ wild_pokemon.front_sprite }}" class="front-sprite">
-        </div>
-        <div class="my-box">
-            <img src="{{ first_pokemon.back_sprite }}" class="back-sprite">
+            <div class="box-top-right">
+                <img src="{{ wild_pokemon.front_sprite }}" class="front-sprite pokemon-top" />
+            </div>
+            <div class="box-bottom-left">
+                <img src="{{ first_pokemon.back_sprite }}" class="back-sprite pokemon-bottom" />
+            </div>
             <div class="my-info">
-                <p id="my-name">{{ first_pokemon.name|upper }}</p>
                 {% for type in first_types %}
                 <input type="hidden" class="my-types" value="{{ type.name }}">
                 {% endfor %}
                 <input type="hidden" id="my-speed" name="my-speed" value="{{ first_pokemon.speed }}">
-                <div class="my-healthbar">
-                    <p class="hp">HP</p>
-                    <div class="my-hp-container">
-                        <div class="my-healthpoints"></div>
-                    </div>
+                <h2 class="pokemon" id="my-name">{{first_pokemon.name|upper}}</h2>
+                <div class="my-hp-container">
+                    <div class="my-healthpoints"></div>
                 </div>
-                <p class="health">
+                <h4 class="hp">
                     <span id="my-current-hp">{{ first_pokemon.health }}</span>
                     / <span id="my-start-hp">{{ first_pokemon.health }}</span>
-                </p>
+                </h4>
+            </div>
+            <div class="bottom-menu">
+                <div class="battle-text display">
+                    <h3 class="textbox">What will {{ first_pokemon.name|upper }} do?</h3>
+                </div>
+                <div class="options">
+                    <div class="row">
+                        <div class="col">
+                            <form action="/battle/moves" method="post" id="moves_form">
+                                {% csrf_token %}
+                                <input type="hidden" name = "pokemon" value="{{ first_pokemon.name }}">
+                                <button type="submit" id="fight">Fight</button>
+                            </form>
+                        </div>
+                        <div class="col">
+                            <button id="party">Pokémon</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button id="run"><a href="/dashboard">Run Away</a></button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="menu">
-        <div class="display">
-            <h3 class="textbox">What will {{ first_pokemon.name|upper }} do?</h3>
-        </div>
-        <div class="options">
-            <div class="row">
-                <div class="col">
-                    <form action="/battle/moves" method="post" id="moves_form">
-                        {% csrf_token %}
-                        <input type="hidden" name = "pokemon" value="{{ first_pokemon.name }}">
-                        <button type="submit" id="fight">Fight</button>
-                    </form>
-                </div>
-                <div class="col">
-                    <button id="party">Pokémon</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <button id="run"><a href="/dashboard">Run Away</a></button>
-                </div>
-            </div>
-        </div>
 </body>
 
 </html>
