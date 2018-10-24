@@ -21,6 +21,7 @@
                 {% for type in wild_types %}
                 <input type="hidden" class="enemy-types" value="{{ type.name }}">
                 {% endfor %}
+                <input type="hidden" id="enemy-speed" name="enemy-speed" value="{{ wild_pokemon.speed }}">
                 <div class="enemy-moves">
                     {% for move in wild_moves %}
                     <input type="hidden" name="{{ move.name }}" class="{{ move.moves_type_id }}" value="{{ move.power }}">
@@ -28,12 +29,10 @@
                 </div>
                 <h2 class="pokemon" id="enemy-name">{{ wild_pokemon.name|upper }}</h2>
                 <div class="enemy-hp-container">
-                    <div class="enemy-healthpoints" 
-                         style="width: {{ request.session.enemy_hp_width }}%">
-                    </div>
+                    <div class="enemy-healthpoints"></div>
                 </div>
                 <h4 class="hp">
-                    <span id="enemy-current-hp">{{ request.session.enemy_hp }}</span>
+                    <span id="enemy-current-hp">{{ wild_pokemon.health }}</span>
                     / <span id="enemy-start-hp">{{ wild_pokemon.health }}</span>
                 </h4>
             </div>
@@ -46,18 +45,18 @@
             <div class="my-info">
                 <input type="hidden" name="my-number" id="my-number" value="{{ my_pokemon.id }}">
                 <input type="hidden" name="order-number" id="order-number" value="{{ order_number }}">
-                {% for type in my_types %}
-                <input type="hidden" class="my-types" value="{{ type.name }}">
-                {% endfor %}
+                <div id="current-types">
+                    {% for type in my_types %}
+                    <input type="hidden" class="my-types" value="{{ type.name }}">
+                    {% endfor %}
+                </div>
                 <input type="hidden" id="my-speed" name="my-speed" value="{{ my_pokemon.speed }}">
                 <h2 class="pokemon" id="my-name">{{my_pokemon.name|upper}}</h2>
                 <div class="my-hp-container">
-                    <div class="my-healthpoints" 
-                         style="width: {{ request.session.my_hp_width }}%">
-                </div>
+                    <div class="my-healthpoints"></div>
                 </div>
                 <h4 class="hp">
-                    <span id="my-current-hp">{{ request.session.my_hp }}</span>
+                    <span id="my-current-hp">{{ my_pokemon.health }}</span>
                     / <span id="my-start-hp">{{ my_pokemon.health }}</span>
                 </h4>
             </div>
@@ -70,7 +69,7 @@
                         <div class="col">
                             <form action="/battle/moves" method="post" id="moves_form">
                                 {% csrf_token %}
-                                <input type="hidden" name = "pokemon" value="{{ my_pokemon.name }}">
+                                <input type="hidden" name="pokemon" id="pokemon" value="{{ my_pokemon.name }}">
                                 <button type="submit" id="fight">Fight</button>
                             </form>
                         </div>

@@ -53,8 +53,16 @@ def add_team(request, name):
 
 def encounter(request):
     trainer = Trainers.objects.get(email = request.session["email"])
-    if trainer.trainer_level < 5:
+    if trainer.trainer_level <= 5:
         pokemon_list = Pokemon.objects.filter(tier = 1)
+    elif trainer.trainer_level <= 15:
+        pokemon_list = Pokemon.objects.filter(tier = 1).filter(tier = 2)
+    elif trainer.trainer_level <= 30:
+        pokemon_list = Pokemon.objects.filter(tier = 1).filter(tier = 2).filter(tier = 3)
+    elif trainer.trainer_level <= 50:
+        pokemon_list = Pokemon.objects.exclude(tier = 5)
+    else:
+        pokemon_list = Pokemon.objects.all()
     pokemon = Pokemon.objects.random(pokemon_list)
     return redirect("/battle/pokemon/" + str(pokemon.id))
 

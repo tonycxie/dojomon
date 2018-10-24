@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 import json
 import requests
 from .models import *
@@ -48,10 +49,10 @@ def wild_encounter(request, number):
 
     lead_pokemon = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = 1).teams_pokemon
     wild_pokemon = Pokemon.objects.get(id = number)
-    request.session["enemy_hp"] = wild_pokemon.health
-    request.session["enemy_hp_width"] = 100
-    request.session["my_hp"] = lead_pokemon.health
-    request.session["my_hp_width"] = 100
+    # request.session["enemy_hp"] = wild_pokemon.health
+    # request.session["enemy_hp_width"] = 100
+    # request.session["my_hp"] = lead_pokemon.health
+    # request.session["my_hp_width"] = 100
     context = {
         "wild_pokemon": wild_pokemon,
         "wild_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = number)),
@@ -79,19 +80,30 @@ def add_pokemon(request, number):
     return redirect("/dashboard")
 
 
-def switch_pokemon(request, enemy_id, enemy_hp, order_number):
-    next_pokemon = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = order_number).teams_pokemon
-    wild_pokemon = Pokemon.objects.get(id = enemy_id)
-    request.session["enemy_hp"] = enemy_hp
-    request.session["enemy_hp_width"] = int(enemy_hp) / int(wild_pokemon.health) * 100
-    request.session["my-hp"] = next_pokemon.health
-    request.session["my_hp_width"] = 100
-    context = {
-        "wild_pokemon": wild_pokemon,
-        "wild_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = enemy_id)),
-        "wild_moves": Moves.objects.filter(moves_pokemon = Pokemon.objects.get(id = enemy_id)),
-        "my_pokemon": next_pokemon,
-        "order_number": order_number,
-        "my_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = next_pokemon.id))
-    }
-    return render(request, "battle/wild_encounter.html", context)
+@csrf_exempt
+def switch_pokemon(request):
+    pokemon_id = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = request.POST["next-order"]).teams_pokemon_id
+    next_pokemon = Pokemon.objects.filter(id = pokemon_id)
+    types = Types.objects.filter(types_pokemon = next_pokemon)
+    response = {
+        "next_pokemon": serializers.serialize("json", next_pokemon),
+        "types": serializers.serialize("json", types)
+    } 
+    return HttpResponse(json.dumps(response), content_type = "application/json")
+
+# def switch_pokemon(request, enemy_id, enemy_hp, order_number):
+#     next_pokemon = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = order_number).teams_pokemon
+#     wild_pokemon = Pokemon.objects.get(id = enemy_id)
+#     request.session["enemy_hp"] = enemy_hp
+#     request.session["enemy_hp_width"] = int(enemy_hp) / int(wild_pokemon.health) * 100
+#     request.session["my-hp"] = next_pokemon.health
+#     request.session["my_hp_width"] = 100
+#     context = {
+#         "wild_pokemon": wild_pokemon,
+#         "wild_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = enemy_id)),
+#         "wild_moves": Moves.objects.filter(moves_pokemon = Pokemon.objects.get(id = enemy_id)),
+#         "my_pokemon": next_pokemon,
+#         "order_number": order_number,
+#         "my_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = next_pokemon.id))
+#     }
+#     return render(request, "battle/wild_encounter.html", context)
