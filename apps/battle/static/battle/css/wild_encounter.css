@@ -36,7 +36,7 @@ body {
   display: block;
   margin-top: 3%;
   width: 1200px;
-  height: 850px;
+  height: 800px;
   background: #F8F8F8;
   z-index: 1;
 }
@@ -77,7 +77,6 @@ body {
 .enemy-healthpoints, .my-healthpoints {
   position: absolute;
   height: 100%;
-  width: 100%;
   border-radius: 20px;
   background: #2fbb00;
 
@@ -236,6 +235,11 @@ button a {
 
 .display .col {
     outline: 1px solid black;
+}
+
+.display a {
+  color: white;
+  text-decoration: none;
 }
 
 .battle-text{

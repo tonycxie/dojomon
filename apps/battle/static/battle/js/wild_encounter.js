@@ -181,9 +181,12 @@ function myMove() {
             timeout = 3000;
         }
         let myHP = $("#my-current-hp").html();
+        let myName = $("#my-name").html();
+        let orderNumber = $("#order-number").val();
         let move = $(this).find("h3").html();
         let attackType = $(this).find(".type").val();
         let power = $(this).find(".power").val();
+        let enemyID = $("#enemy-number").val();
         let enemyHP = $("#enemy-current-hp").html();
         let enemyTypes = $(".enemy-info .enemy-types");
         let powerMult = power;
@@ -219,9 +222,11 @@ function myMove() {
             myHP = $("#my-current-hp").html();
             // if my health is 0, display losing message and end function
             if (myHP == 0) {
+                orderNumber = parseInt(orderNumber) + 1;
                 $(".display").html(
-                    "<h3 class='lose'>You lose :(</h3>" + 
-                    "<a href='/dashboard'>Return to Dashboard</a>"
+                    "<h3>" + myName + " fainted!</h3>" +                     
+                    "<a href='/battle/switch_pokemon/" + enemyID + "/" + newEnemyHP + "/" + 
+                    orderNumber + "'>Next Pokémon</a>"
                 );
                 return;
             }
@@ -274,6 +279,10 @@ function enemyMove() {
     }
     let enemyMoves = $(".enemy-moves input");
     let myHP = $("#my-current-hp").html();
+    let myName = $("#my-name").html();
+    let orderNumber = $("#order-number").val();
+    let enemyID = $("#enemy-number").val();
+    let enemyHP = $("#enemy-current-hp").html();
     let randInt = Math.floor(Math.random() * Math.floor(enemyMoves.length));
     let randMove = enemyMoves[randInt];
     let typeIndex = parseInt(randMove.className);
@@ -338,9 +347,11 @@ function enemyMove() {
         myHP = $("#my-current-hp").html();
         // if my health is 0, display losing message and end function
         if (myHP == 0) {
+            orderNumber = parseInt(orderNumber) + 1;            
             $(".display").html(
-                "<h3 class='lose'>You lose :(</h3>" + 
-                "<a href='/dashboard'>Return to Dashboard</a>"
+                "<h3>" + myName + " fainted!</h3>" + 
+                "<a href='/battle/switch_pokemon/" + enemyID + "/" + enemyHP + "/" + 
+                orderNumber + "'>Next Pokémon</a>"
             );
             return;
         }
