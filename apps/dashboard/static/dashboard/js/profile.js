@@ -106,6 +106,8 @@ function displayPokemonInfo(response) {
     $(".img-wrapper > img").attr("src", pokemon[0].fields.front_sprite);
     $(".type").text("Type: " + types[0].fields.name)
     $(".number").text("no. " + pokemon[0].pk)
+    console.log(pokemon[0]);
+    $(".description").text(pokemon[0].fields.desc)
 
 }
 
