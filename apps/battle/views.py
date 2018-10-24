@@ -46,13 +46,19 @@ def wild_encounter(request, number):
     #         moves_type = move_type
     #     )
 
-    lead_id = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = 1).teams_pokemon_id 
+    lead_pokemon = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = 1).teams_pokemon
+    wild_pokemon = Pokemon.objects.get(id = number)
+    request.session["enemy_hp"] = wild_pokemon.health
+    request.session["enemy_hp_width"] = 100
+    request.session["my_hp"] = lead_pokemon.health
+    request.session["my_hp_width"] = 100
     context = {
-        "wild_pokemon": Pokemon.objects.get(id = number),
+        "wild_pokemon": wild_pokemon,
         "wild_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = number)),
         "wild_moves": Moves.objects.filter(moves_pokemon = Pokemon.objects.get(id = number)),
-        "first_pokemon": Pokemon.objects.get(id = lead_id),
-        "first_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = lead_id))
+        "my_pokemon": lead_pokemon,
+        "order_number": 1,
+        "my_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = lead_pokemon.id))
     }
     return render(request, "battle/wild_encounter.html", context)
 
@@ -71,3 +77,21 @@ def add_pokemon(request, number):
         trainer.trainer_level += pokemon.tier
         trainer.save()
     return redirect("/dashboard")
+
+
+def switch_pokemon(request, enemy_id, enemy_hp, order_number):
+    next_pokemon = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = order_number).teams_pokemon
+    wild_pokemon = Pokemon.objects.get(id = enemy_id)
+    request.session["enemy_hp"] = enemy_hp
+    request.session["enemy_hp_width"] = int(enemy_hp) / int(wild_pokemon.health) * 100
+    request.session["my-hp"] = next_pokemon.health
+    request.session["my_hp_width"] = 100
+    context = {
+        "wild_pokemon": wild_pokemon,
+        "wild_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = enemy_id)),
+        "wild_moves": Moves.objects.filter(moves_pokemon = Pokemon.objects.get(id = enemy_id)),
+        "my_pokemon": next_pokemon,
+        "order_number": order_number,
+        "my_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = next_pokemon.id))
+    }
+    return render(request, "battle/wild_encounter.html", context)
