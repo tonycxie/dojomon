@@ -17,27 +17,31 @@
         <h1 class="title">Wild Encounter!</h1>
         <div class="battle-scene">
             <div class="enemy-info">
-                <input type="hidden" name="enemy-number" id="enemy-number" value="{{ wild_pokemon.id }}">
-                {% for type in wild_types %}
+                <input type="hidden" name="enemy-level" id="enemy-level" value="{{ enemy_level }}">
+                {% if enemy_order %}
+                <input type="hidden" name="enemy-order" id="enemy-order" value="{{ enemy_order }}">
+                {% endif %}
+                <input type="hidden" name="enemy-number" id="enemy-number" value="{{ enemy_pokemon.id }}">
+                {% for type in enemy_types %}
                 <input type="hidden" class="enemy-types" value="{{ type.name }}">
                 {% endfor %}
-                <input type="hidden" id="enemy-speed" name="enemy-speed" value="{{ wild_pokemon.speed }}">
+                <input type="hidden" id="enemy-speed" name="enemy-speed" value="{{ enemy_pokemon.speed }}">
                 <div class="enemy-moves">
-                    {% for move in wild_moves %}
+                    {% for move in enemy_moves %}
                     <input type="hidden" name="{{ move.name }}" class="{{ move.moves_type_id }}" value="{{ move.power }}">
                     {% endfor %}
                 </div>
-                <h2 class="pokemon" id="enemy-name">{{ wild_pokemon.name|upper }}</h2>
+                <h2 class="pokemon" id="enemy-name">{{ enemy_pokemon.name|upper }}</h2>
                 <div class="enemy-hp-container">
                     <div class="enemy-healthpoints"></div>
                 </div>
                 <h4 class="hp">
-                    <span id="enemy-current-hp">{{ wild_pokemon.health }}</span>
-                    / <span id="enemy-start-hp">{{ wild_pokemon.health }}</span>
+                    <span id="enemy-current-hp">{{ enemy_pokemon.health }}</span>
+                    / <span id="enemy-start-hp">{{ enemy_pokemon.health }}</span>
                 </h4>
             </div>
             <div class="box-top-right">
-                <img src="{{ wild_pokemon.front_sprite }}" class="front-sprite pokemon-top" />
+                <img src="{{ enemy_pokemon.front_sprite }}" class="front-sprite pokemon-top" />
             </div>
             <div class="box-bottom-left">
                 <img src="{{ my_pokemon.back_sprite }}" class="back-sprite pokemon-bottom" />

@@ -49,14 +49,11 @@ def wild_encounter(request, number):
 
     lead_pokemon = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = 1).teams_pokemon
     wild_pokemon = Pokemon.objects.get(id = number)
-    # request.session["enemy_hp"] = wild_pokemon.health
-    # request.session["enemy_hp_width"] = 100
-    # request.session["my_hp"] = lead_pokemon.health
-    # request.session["my_hp_width"] = 100
     context = {
-        "wild_pokemon": wild_pokemon,
-        "wild_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = number)),
-        "wild_moves": Moves.objects.filter(moves_pokemon = Pokemon.objects.get(id = number)),
+        "enemy_pokemon": wild_pokemon,
+        "enemy_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = number)),
+        "enemy_moves": Moves.objects.filter(moves_pokemon = Pokemon.objects.get(id = number)),
+        "enemy_level": "wild_pokemon",
         "my_pokemon": lead_pokemon,
         "order_number": 1,
         "my_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = lead_pokemon.id))
@@ -93,15 +90,33 @@ def switch_pokemon(request):
 
 def battle_trainers(request):
     data = {
-        "trainers": Trainers.objects.filter(user_level=0)
+        "user": Trainers.objects.get(email = request.session["email"]),
+        "trainers": CPUs.objects.all(),
+        "trainers_teams": CPUTeam.objects.all()
     }
     return render(request, "battle/trainers.html", data)
+
+
+def start_battle(request, number):
+    lead_pokemon = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = 1).teams_pokemon
+    enemy_pokemon = CPUTeam.objects.filter(cpu_teams_trainer = CPUs.objects.get(id = number)).get(order = 1).cpu_teams_pokemon
+    context = {
+        "enemy_pokemon": enemy_pokemon,
+        "enemy_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = enemy_pokemon.id)),
+        "enemy_moves": Moves.objects.filter(moves_pokemon = Pokemon.objects.get(id = enemy_pokemon.id)),
+        "enemy_level": "trainer",
+        "enemy_order": 1,
+        "my_pokemon": lead_pokemon,
+        "order_number": 1,
+        "my_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = lead_pokemon.id))
+    }
+    return render(request, "battle/wild_encounter.html", context)
 
 # available trainers:
 #     Preschooler
 #     bugsy
 #     alder
 #     misty
-#     red
-#     lance
 #     light
+#     lance
+#     red

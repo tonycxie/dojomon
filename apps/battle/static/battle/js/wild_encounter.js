@@ -272,10 +272,14 @@ function myMove() {
             enemyCurrentHP = newEnemyHP;
             // if enemy health is 0, display winning message and end function
             if (enemyCurrentHP <= 0) {
-                $(".display").html(
-                    "<h3 class='win'>You win! :D</h3>" + 
-                    "<a href='/battle/add_pokemon/" + $("#enemy-number").val() + "'>Return to Dashboard</a>"
-                );
+                if ($("#enemy-order").val()) {
+                    console.log("enemy is sending out next pokemon")
+                } else {
+                    $(".display").html(
+                        "<h3 class='win'>You win! :D</h3>" + 
+                        "<a href='/battle/add_pokemon/" + $("#enemy-number").val() + "'>Return to Dashboard</a>"
+                    );
+                }
                 return;
             }
             // menu reappears if enemy goes first
@@ -353,11 +357,14 @@ function enemyMove() {
         console.log("enemy hp is " + enemyCurrentHP)
         // if enemy health is 0, display winning message and end function
         if (enemyCurrentHP <= 0) {
-            console.log("winner!")
-            $(".display").html(
-                "<h3 class='win'>You win! :D</h3>" + 
-                "<a href='/battle/add_pokemon/" + $("#enemy-number").val() + "'>Return to Dashboard</a>"
-            );
+            if ($("#enemy-order").val()) {
+                console.log("enemy is sending out next pokemon")
+            } else {
+                $(".display").html(
+                    "<h3 class='win'>You win! :D</h3>" + 
+                    "<a href='/battle/add_pokemon/" + $("#enemy-number").val() + "'>Return to Dashboard</a>"
+                );
+            }
             return;
         }
         flash(600, 300, $(".back-sprite"));
