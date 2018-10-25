@@ -16,7 +16,7 @@ function addToTeam() {
                             "<p class='name col-4'>" + response[0]["fields"]["name"] + "</p>" + 
                             "<form action='/dashboard/remove_team' method='post' class='col-1 remove-pokemon'>" +
                                 "<input type='hidden' name='remove-id' id='remove-id' value='" + response[0]["pk"] + "'>" +
-                                "<button type='submit'>-</button>" + 
+                                "<button class='btn' type='submit'>-</button>" + 
                             "</form>" +     
                         "</div>"
                     );
