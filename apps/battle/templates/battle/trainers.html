@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Battle Trainers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'battle/css/trainers.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/navbar.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'dashboard/js/profile.js' %}"></script>
+</head>
+
+<body>
+    <div id="wrapper" class="container-fluid">
+        <nav class="float-left" id="sidebar">
+            <div class="sidebar-header">
+                <h4>Pokemon Menu</h4>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <p>{{request.session.first_name}}</p>
+                </li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/dashboard/profile/{{request.session.userid}}">Profile</a></li>
+                <li><a href="/dashboard/edit_team">edit team</a></li>
+                <li><a href="">pokemon</a></li>
+                <li><a href="">trade requests</a></li>
+                <li><a href="">account settings</a></li>
+                <li><a href="/">logout</a></li>
+            </ul>
+        </nav>
+        <div id="content">
+            <div><a id="collapse-btn"><i class="fa fa-bars" aria-hidden="true"></i></a></div>
+            <div class="container-fluid">
+                {% comment %} {% for trainer in trainers %} {% endcomment %}
+                <div class="row">
+                    <p class="level col-1">req level: 1</p>
+                    <div class="col-2 trainer-sprite-wrapper">
+                        <!-- add locked class name and .hide to p tag is trainer level too low -->
+                        <img src="/static/battle/images/trainers/preschooler.png" alt="preschooler">
+                        <p>Preschooler</p>
+                    </div>
+                    <div class="col-6 trainers-team">
+                        <!-- each pokemon sprite should have .hide if trainer is locked -->
+                        <div class="pokemon-sprite-wrapper">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png" alt="">
+                        </div>
+                    </div>
+                    <!-- button should have .hide if trainer is locked -->
+                    <a href="" class="btn btn-primary col-2">battle!</a>
+                </div>
+                {% comment %} {%endfor%} {% endcomment %}
+            </div>
+        </div>
+</body>
+
+</html>
