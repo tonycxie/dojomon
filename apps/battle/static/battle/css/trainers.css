@@ -1,0 +1,64 @@
+body * {
+    outline: 1px solid pink;
+    margin: 0;
+    padding: 0;
+}
+
+.col-1, .col-2, .col-6 {
+    margin: 0;
+    padding: 0;
+}
+
+div.row {
+    margin: 2em 0 0 1em;
+    padding: 1em;
+}
+
+div.trainer-sprite-wrapper > img {
+    height:90px;
+    width:90px;
+}
+
+.trainer-sprite-wrapper > p{
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+p.level {
+    margin: auto 0;
+}
+
+.trainer-sprite-wrapper > p{
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.trainers-team {
+    margin: auto 0;
+}
+
+.pokemon-sprite-wrapper {
+    display: inline-block;
+    margin: 0 1em 0 0;
+}
+
+a.btn {
+    margin: auto;
+    /* width: 50px; */
+    height: 55px;
+    padding: 1em;
+}
+
+.locked {
+    -webkit-filter: brightness(0);
+    filter: brightness(0);
+}
+
+.unlocked {
+    -webkit-filter: brightness(100%);
+    filter: brightness(100%);
+}
+
+.hide {
+    display: none;
+}

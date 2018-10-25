@@ -90,3 +90,18 @@ def switch_pokemon(request):
         "types": serializers.serialize("json", types)
     } 
     return HttpResponse(json.dumps(response), content_type = "application/json")
+
+def battle_trainers(request):
+    data = {
+        "trainers": Trainers.objects.filter(user_level=0)
+    }
+    return render(request, "battle/trainers.html", data)
+
+# available trainers:
+#     Preschooler
+#     bugsy
+#     alder
+#     misty
+#     red
+#     lance
+#     light
