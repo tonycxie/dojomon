@@ -148,5 +148,6 @@ def remove_team(request):
     for current_pokemon in team:
         current_pokemon.order = order_number
         order_number += 1
+        current_pokemon.save()
     pokemon = Pokemon.objects.filter(id = request.POST["remove-id"])
     return HttpResponse(serializers.serialize("json", pokemon), content_type = "application/json")
