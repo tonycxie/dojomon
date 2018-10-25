@@ -20,7 +20,6 @@ function addToTeam() {
                             "</form>" +     
                         "</div>"
                     );
-                    // removeFromTeam(); // removes static content
                 }
             }
         });
