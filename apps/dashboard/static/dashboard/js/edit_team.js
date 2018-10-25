@@ -20,8 +20,8 @@ function addToTeam() {
                             "</form>" +     
                         "</div>"
                     );
+                    // removeFromTeam(); // removes static content
                 }
-                removeFromTeam();
             }
         });
     });
@@ -54,5 +54,6 @@ $(document).ready(function() {
             "</form>"
         );
         addToTeam();
+        removeFromTeam();
     });
 });

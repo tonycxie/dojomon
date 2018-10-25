@@ -142,12 +142,15 @@ def add_to_team(request):
 def remove_team(request):
     trainer = Trainers.objects.get(email = request.session["email"])
     team = Team.objects.filter(teams_trainer = trainer)
+    print("removing " + request.POST["remove-id"])
     team.get(teams_pokemon_id = request.POST["remove-id"]).delete()
     team = Team.objects.filter(teams_trainer = trainer)
     order_number = 1
     for current_pokemon in team:
         current_pokemon.order = order_number
+        print("changing " + str(current_pokemon.teams_pokemon_id) + " to order " + str(order_number))
         order_number += 1
         current_pokemon.save()
     pokemon = Pokemon.objects.filter(id = request.POST["remove-id"])
-    return HttpResponse(serializers.serialize("json", pokemon), content_type = "application/json")
+    print("redirecting...")
+    return redirect("/dashboard/edit_team")
