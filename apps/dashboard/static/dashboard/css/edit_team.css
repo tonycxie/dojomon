@@ -31,11 +31,21 @@ body * {
     padding: 0;
 }
 
-.pokemon-wrapper {
+#player-party .pokemon-wrapper {
     /* border: 1px solid black; */
     border-radius: .5em;
     background-color: #ffefef;
     margin: .5em 0;
+}
+
+#player-party p, #player-party form {
+    margin-top: 1.75em;
+}
+
+.remove-pokemon button {
+    height: 60px;
+    width: 60px;
+    font-size: 20pt;
 }
 
 .pokemon-img {

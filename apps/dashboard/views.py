@@ -129,5 +129,5 @@ def add_to_team(request):
             teams_pokemon_id = request.POST["id"],
             teams_trainer = trainer
         )
-        pokemon = Pokemon.objects.filter(id = request.POST["id"])
+        pokemon = Pokemon.objects.filter(id = request.POST["add-id"])
     return HttpResponse(serializers.serialize("json", pokemon), content_type = "application/json")

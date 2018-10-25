@@ -27,7 +27,7 @@ $(document).ready(function() {
         let id = parseInt( $(this).attr("src").match(/\d+/), 10 );
         $("#add").html(
             "<form action='/dashboard/add_to_team' method='post' id='add-pokemon'>" +
-                "<input type='hidden' name='id' id='id' value='" + id + "'>" + 
+                "<input type='hidden' name='add-id' id='add-id' value='" + id + "'>" + 
                 "<button type='submit'>+</button>" +
             "</form>"
         );
