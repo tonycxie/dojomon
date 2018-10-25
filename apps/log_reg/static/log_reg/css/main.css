@@ -1,17 +1,116 @@
-body .container-fluid {
+#body {
+    background-color: rgb(9, 180, 9);
+}
+
+body * {
+    /* outline: 1px solid black; */
+    margin: 0;
     padding: 0;
 }
 
-.container-fluid .navbar {
-    padding: 8px 10%;
+div.container-fluid {
+    padding: 0;
+    margin: 0;
 }
 
-.container-fluid .jumbotron {
-    width: 80%;
-    margin: 20px auto;
+div.gameboy-wrapper {
+    width: 970px;
+    margin: 2em auto;
 }
 
-.info {
-    width: 80%;
+.screen-wrapper {
+    width: 60%;
+    height: 525px;
     margin: 0 auto;
+    background-color: black;
+    border-radius: .5em;
+    text-align: center;
+}
+
+.screen {
+    /* display: inline-block; */
+    width: 420px;
+    height: 410px;
+    margin: 3em auto 0 auto;
+    /* background-color:#c3c8b1; */
+    /* background-position: left left; */
+    background: url("/static/log_reg/images/screen.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.power-light {
+    width: 14px;
+    height: 14px;
+    margin-bottom: 3px;
+    background-color: rgb(252, 71, 71);
+    border: 1px solid red;
+    border-radius: 50%;
+}
+
+.power, .screen {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.power {
+    padding-right: 1em;
+    margin-left: -4em;
+    margin-top: -8em;
+}
+
+.power > p {
+    padding: 0;
+    font-size: 11pt;
+    font-weight: bold;
+    color: rgb(112, 112, 112);
+}
+
+.logo {
+    font-size: 18pt;
+    font-weight: bold;
+    color: gray;
+    margin-top: .75em;
+}
+
+.game-pad {
+    padding: 5em 0 0 14em;
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+a.btn {
+    margin: 0 1em;
+    padding: 0;
+    font-size: 11pt;
+    font-weight: bold;
+    text-align: center;
+    line-height: 3.85em;
+    color: rgb(207, 207, 207);
+    background-color: darkslategray;
+    width: 63px;
+    height: 63px;
+    border-radius: 50%;
+    box-shadow: .15em .15em .15em rgb(36, 61, 61);
+}
+
+a.btn:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(31, 53, 53);
+    box-shadow: .15em .15em .15em rgb(18, 31, 31);
+}
+
+
+.screen > p {
+    font-weight: bold;
+    font-size: 12pt;
+    color: black;
+    background-color:#f7f7f7;
+    /* border: 1px solid black; */
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    top: 160px;
+    left: -35px;
 }

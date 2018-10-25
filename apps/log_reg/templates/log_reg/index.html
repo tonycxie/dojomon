@@ -11,57 +11,29 @@
     <link rel="stylesheet" href="{% static 'log_reg/css/main.css' %}">
 </head>
 
-<body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-            <a class="navbar-brand text-light" href="/">MyApp</a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link text-light" href="/">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
+<body id="body">
+    <audio autoplay="true" loop>
+        <source src="/static/log_reg/startup.mp3" type="audio/mpeg">
+    </audio>
+    <div class="container">
+        <div class="gameboy-wrapper">
+            <div class="screen-wrapper">
+                <div class="power">
+                    <div class="power-light"></div>
+                    <p>power</p>
+                </div>
+                <div class="screen">
+                    <p>DOJO</p>
+                </div>
+                <div class="logo">GAMEBOY</div>
             </div>
-            <a class="text-light" href="/signin">Sign In</a>
-        </nav>
-        <div class="jumbotron">
-            <h1 class="display-4">Welcome to MyApp!</h1>
-            <p class="lead">
-                This is going to be a really cool app. At least I hope it will. If it
-                isn't then I will be sad :(
-            </p>
-            <hr class="my-4">
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="/register">Start</a>
-            </p>
-        </div>
-        <div class="info">
-            <div class="row">
-                <div class="col">
-                    <h3>Manage Users</h3>
-                    <p>
-                        Using this application, you'll learn be able to add, edit,
-                        or remove users if they ever step out of line.
-                    </p>
-                </div>
-                <div class="col">
-                    <h3>Leave Messages</h3>
-                    <p>
-                        Users will be able to leave messages for other users
-                        whenever they feel like it up until that person gets annoyed 
-                        of you and subsequently blocks you.
-                    </p>
-                </div>
-                <div class="col">
-                    <h3>Edit User Information</h3>
-                    <p>
-                        Admins will be able to edit another user's information
-                        and give them funny names to make them look like fools.
-                    </p>
-                </div>
+            <div class="game-pad">
+                <a class="btn" href="/signin">sign in</a>
+                <a class="btn" href="/register">register</a>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
