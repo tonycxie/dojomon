@@ -1,5 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 import json
 import requests
 from .models import *
@@ -56,9 +58,9 @@ def encounter(request):
     if trainer.trainer_level <= 5:
         pokemon_list = Pokemon.objects.filter(tier = 1)
     elif trainer.trainer_level <= 15:
-        pokemon_list = Pokemon.objects.filter(tier = 1).filter(tier = 2)
+        pokemon_list = Pokemon.objects.filter(Q(tier=1) | Q(tier=2))
     elif trainer.trainer_level <= 30:
-        pokemon_list = Pokemon.objects.filter(tier = 1).filter(tier = 2).filter(tier = 3)
+        pokemon_list = Pokemon.objects.filter(Q(tier = 1) | Q(tier = 2) | Q(tier = 3))
     elif trainer.trainer_level <= 50:
         pokemon_list = Pokemon.objects.exclude(tier = 5)
     else:
@@ -110,3 +112,22 @@ def edit_page(request):
         "trainers_team": pokemon_team
     }
     return render(request, "dashboard/edit_team.html", data)
+
+
+@csrf_exempt
+def add_to_team(request):
+    trainer = Trainers.objects.get(email = request.session["email"])
+    team = Team.objects.filter(teams_trainer = trainer).order_by("-order")
+    check_dups = team.filter(teams_pokemon_id = 4).count()  
+    if team.first().order == 6 or check_dups > 0:
+        print("team is full or pokemon is already in team")
+        pokemon = None
+    else:
+        next_order = team.first().order + 1
+        Team.objects.create(
+            order = next_order,
+            teams_pokemon_id = request.POST["id"],
+            teams_trainer = trainer
+        )
+        pokemon = Pokemon.objects.filter(id = request.POST["id"])
+    return HttpResponse(serializers.serialize("json", pokemon), content_type = "application/json")

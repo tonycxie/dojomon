@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^profile/(?P<id>\d+)$', views.profile_view),
     url(r'^save_sprite$', views.save_sprite),
     url(r'^view_pokemon/(?P<id>\d+)$', views.view_pokemon),
-    url(r'^edit_team$', views.edit_page)
+    url(r'^edit_team$', views.edit_page),
+    url(r'^add_to_team$', views.add_to_team)
 ]

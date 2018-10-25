@@ -155,3 +155,12 @@ div.bottom {
 .row {
     margin: 0;
 }
+
+#add-pokemon, #add-pokemon button {
+    height: 100%;
+    width: 100%;
+}
+
+#add-pokemon button {
+    font-size: 20pt;
+}
