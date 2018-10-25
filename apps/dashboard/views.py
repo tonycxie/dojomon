@@ -154,3 +154,10 @@ def remove_team(request):
     pokemon = Pokemon.objects.filter(id = request.POST["remove-id"])
     print("redirecting...")
     return redirect("/dashboard/edit_team")
+
+
+def edit_account(request):
+    data = {
+        "trainer": Trainers.objects.get(email = request.session["email"])
+    }
+    return render(request, "dashboard/edit_account.html", data)

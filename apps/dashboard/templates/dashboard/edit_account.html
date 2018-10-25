@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Profile Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'dashboard/css/edit_account.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/navbar.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'dashboard/js/edit_account.js' %}"></script>
+</head>
+
+<body>
+    <div id="wrapper" class="container-fluid">
+        <nav class="float-left" id="sidebar">
+            <div class="sidebar-header">
+                <h4>Pokemon Menu</h4>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <p>{{request.session.first_name}}</p>
+                </li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/dashboard/profile/{{request.session.userid}}">Profile</a></li>
+                <li><a href="/dashboard/edit_team">edit team</a></li>
+                <li><a href="/dashboard/edit_account">account settings</a></li>
+                <li><a href="/">logout</a></li>
+            </ul>
+        </nav>
+        <div id="content">
+            <div><a id="collapse-btn"><i class="fa fa-bars" aria-hidden="true"></i></a></div>
+
+        </div>
+    </div>
+</body>
+
+</html>
