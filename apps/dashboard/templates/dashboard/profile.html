@@ -39,7 +39,10 @@
             <div class="container-fluid row">
                 <div class="col-6">
                     <div class="trainer-card">
-                        <h3>Trainer Card</h3>
+                        <h3>
+                            Trainer Card
+                            <span class="float-right"><img src="/static/dashboard/images/pokemon-icon.png" alt=""></span>
+                        </h3>
                         {% if request.session.userid == trainer.id %}
                         <img class="trainer-sprite col-2" src="{{trainer.character_sprite}}" alt="">
                         {%else%}
@@ -89,14 +92,14 @@
                 <div class="pokedex-wrapper col-5 container-fluid">
                     <h4>Pokedex</h4>
                     <div class="filter">
-                        <button class="btn btn-primary" id="all">all</button>
-                        <button class="btn btn-primary" id="found">found</button>
-                        <button class="btn btn-primary" id="unknown">unknown</button>
-                        <button id="tier1" class="btn btn-primary">tier 1</button>
-                        <button id="tier2" class="btn btn-primary">tier 2</button>
-                        <button id="tier3" class="btn btn-primary">tier 3</button>
-                        <button id="tier4" class="btn btn-primary">tier 4</button>
-                        <button id="tier5" class="btn btn-primary">tier 5</button>
+                        <button class="btn" id="all">all</button>
+                        <button class="btn" id="found">found</button>
+                        <button class="btn" id="unknown">unknown</button>
+                        <button id="tier1" class="btn">T-1</button>
+                        <button id="tier2" class="btn">T-2</button>
+                        <button id="tier3" class="btn">T-3</button>
+                        <button id="tier4" class="btn">T-4</button>
+                        <button id="tier5" class="btn">T-5</button>
                     </div>
                     <div id="pokedex">
                         {% for sprite in all_pokemon %}

@@ -16,17 +16,29 @@ body * {
 .trainer-card {
     height: 42%;
     width: 655px;
-    border: 3px dotted black;
+    border: 3px solid rgb(230, 230, 230);
     border-radius: .5em;
     background-color: whitesmoke;
+    box-shadow: 4px 4px 1px rgb(197, 197, 197);
     /* background-color: rgb(43, 27, 27); */
     /* margin-top: 2em; */
 }
+
 
 .trainer-card > h3 {
     padding: .25em;
     margin: .25em .5em;
     text-align: left;
+    border-bottom: 3px solid rgb(199, 201, 190);
+}
+
+.float-right {
+    margin-top: -.25em;
+}
+
+.float-right > img {
+    width: 50px;
+    height: 50px;
 }
 
 .trainer-sprite {
@@ -62,8 +74,9 @@ img.trainer-sprite:hover {
     width: 93%;
     height: 30%;
     margin: 1.5em;
-    border: 3px dotted rgb(87, 82, 82);
+    border: 3px solid rgb(167, 167, 167);
     border-radius: .5em;
+    background-color:rgb(235, 235, 235);
 }
 
 
@@ -102,23 +115,44 @@ div.pokedex-wrapper {
     /* margin: 2em 0; */
     width: 800px;
     padding: 1em;
-    border: 3px solid #3B4CCA;
+    /* border-left: 3px solid rgb(5, 16, 97);
+    border-top: 3px solid rgb(5, 16, 97); */
     border-radius: .5em;
     background-color: #FF0000;
+    box-shadow: 10px 10px 1px #7e1a17;
 }
 
 div.pokedex-wrapper > h4 {
     font-weight: bold;
     color: white;
-    font-size: 22pt;
+    font-size: 26pt;
 }
 
 .filter {
     width: 90%;
     padding: 1em;
     margin: 1em auto;
-    border: 3px solid #3B4CCA;
+    /* border: 3px solid rgb(46, 62, 182); */
     border-radius: .5em;
+}
+
+.filter button {
+    background-color: rgb(99, 82, 250);
+    color: white;
+    font-weight: bold;
+    border: 1px solid rgb(10, 0, 100);
+    border-radius: .3em;
+    box-shadow: 0 2px rgb(10, 0, 100);
+
+}
+
+.filter button:hover {
+    background-color: rgb(61, 39, 255);
+}
+
+.filter button:active {
+    /* box-shadow: 0 5px #666; */
+    transform: translateY(3px);
 }
 
 #pokedex {
@@ -126,7 +160,7 @@ div.pokedex-wrapper > h4 {
     padding: .5em;
     height: 600px;
     width: 90%;
-    border: 3px solid #3B4CCA;
+    border: 3px solid rgb(46, 62, 182);
     overflow-y: auto;
     background-color: whitesmoke;
     border-radius: .5em;
@@ -166,8 +200,9 @@ form > button {
     width: 500px;
     height: 30%;
     margin: 2em auto;
-    border: 3px dotted black;
+    border: 3px solid rgb(230, 230, 230);
     border-radius: .5em;
+    box-shadow: 2px 2px 2px rgb(177, 177, 177);
     padding: 0;
     background-color: whitesmoke;
 }
@@ -195,7 +230,7 @@ form > button {
 }
 
 .img-wrapper {
-    border-right: 3px dotted black;
+    border-right: 3px solid rgb(216, 213, 213);
     padding: .5em;
 }
 
@@ -205,7 +240,7 @@ div.top .poke-info p {
 }
 
 div.bottom {
-    border-top: 3px dotted black;
+    border-top: 3px solid rgb(216, 213, 213);
 }
 
 form {

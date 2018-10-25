@@ -22,12 +22,13 @@ div.container-fluid {
 }
 
 #player-party {
-    border: 1px solid black;
+    /* border: 3px solid rgb(47, 47, 48); */
     border-radius: .5em;
     width: 50%;
     margin: 0 auto;
     padding: 1.5em;
     background-color: #194787;
+    box-shadow: 8px 8px 1px #11315e;
 }
 
 .name, .pokemon-img { display: inline-block; }
@@ -38,7 +39,7 @@ div.container-fluid {
 }
 
 .pokemon-wrapper {
-    border: 1px solid black;
+    border: 2px solid rgb(47, 47, 48);
     border-radius: .5em;
     background-color: #ffefef;
     margin: .5em 0;
@@ -64,6 +65,7 @@ div.container-fluid {
     height: 200px;
     color: white;
     background-color: #27496d;
+    box-shadow: 6px 6px 1px #11315e;
 }
 
 #date-time > p { text-align: center; }
@@ -76,6 +78,7 @@ p#time {
 .trainers-wrapper {
     height: 250px;
     background-color: #F5F7EA;
+    box-shadow: 6px 6px rgb(199, 201, 190);
     text-align: center;
 }
 
@@ -85,7 +88,6 @@ p#time {
     margin: auto;
     width: 45%;
     padding: 2%;
-    border: 3px solid black;
     border-radius: .5em;
 }
 
@@ -114,19 +116,23 @@ p#time {
     justify-content: center;
 }
 
+
+.battle-trainers-wrapper, .encounter-wrapper {
+    border: 3px solid black;
+}
+
 .battle-trainers-wrapper {
     background-image: url("/static/dashboard/images/comfy_shorts.gif");
     background-size: cover;
     background-position-y: -10em;
     background-repeat: no-repeat;
-    border: 3px dotted black;
 }
 
 .encounter-wrapper {
     background-image: url("/static/dashboard/images/ditto.gif");
     background-repeat: no-repeat;
     background-size: cover;
-    border: 3px dotted black;
+
 }
 
 .encounter-wrapper, .battle-trainers-wrapper {
