@@ -96,17 +96,18 @@ function displayPokemonInfo(response) {
     let types = JSON.parse(response["type"])
     let moves = JSON.parse(response["moves"]);
     let pokemon = JSON.parse(response["pokemon"]);
-    console.log(moves);
-    console.log(types)
-    console.log(pokemon[0])
+    // console.log(moves);
+    // console.log(types)
+    // console.log(pokemon[0])
     let pokeName = pokemon[0].fields.name;
     $(".info-name").text(pokeName.charAt(0).toUpperCase() + pokeName.slice(1));
     $(".health").text("Health: " + pokemon[0].fields.health)
     $(".speed").text("Speed: " + pokemon[0].fields.speed)
     $(".img-wrapper > img").attr("src", pokemon[0].fields.front_sprite);
+    // $(".img-wrapper > img").attr("id", pokemon[0].pk);
     $(".type").text("Type: " + types[0].fields.name)
     $(".number").text("no. " + pokemon[0].pk)
-    console.log(pokemon[0]);
+    // console.log(pokemon[0]);
     $(".description").text(pokemon[0].fields.desc)
 
 }
