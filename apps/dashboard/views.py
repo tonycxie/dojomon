@@ -161,3 +161,24 @@ def edit_account(request):
         "trainer": Trainers.objects.get(email = request.session["email"])
     }
     return render(request, "dashboard/edit_account.html", data)
+
+
+def update_info(request):
+    if request.method == "POST":
+        errors = Trainers.objects.register_validator(request.POST)
+        if len(errors) and not errors["email_exists"]:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect("/dashboard/edit_account")
+        pw_hash = bcrypt.hashpw(request.POST["password"].encode(), bcrypt.gensalt())
+        Trainers.objects.create(
+            first_name = request.POST["first_name"], 
+            last_name = request.POST["last_name"],
+            email = request.POST["email"],
+            user_level = request.session["user_level"],
+            trainer_level = 0,
+            password_hash = pw_hash
+        )
+            
+
+    return redirect("/dashboard")

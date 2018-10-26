@@ -20,7 +20,7 @@ class TrainersManager(models.Manager):
         elif not EMAIL_REGEX.match(postData["email"]):
             errors["email"] = "Invalid email"
         elif Trainers.objects.filter(email = postData["email"]).count() > 0:
-            errors["email"] = "Email already exists"
+            errors["email_exists"] = "Email already exists"
         if len(postData["password"]) < 1:
             errors["pw"] = "Password is required"
         elif len(postData["password"]) < 8:
