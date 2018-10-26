@@ -50,7 +50,8 @@ def registration(request):
             email = request.POST["email"],
             user_level = request.session["user_level"],
             trainer_level = 0,
-            password_hash = pw_hash
+            password_hash = pw_hash,
+            character_sprite = "/static/dashboard/images/character_sprites/sprite1.png"
         )
     return redirect("/dashboard/get_started")
 
