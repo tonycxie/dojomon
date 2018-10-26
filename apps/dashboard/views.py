@@ -40,6 +40,11 @@ def get_started(request):
     return render(request, "dashboard/get_started.html")
 
 
+def logout(request):
+    request.session.flush()
+    return redirect("/")
+
+
 def add_team(request, name):
     pokemon = Pokemon.objects.get(name = name)
     trainer = Trainers.objects.get(email = request.session["email"])
