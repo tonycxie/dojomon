@@ -8,9 +8,6 @@ body {
   background:
     linear-gradient(rgba(24%, 48%, 80%, 0.9),
     rgba(24%, 48%, 80%, 0.9)), url("http://wallpapercave.com/wp/ZqCwNUM.jpg");
-  /* background: url("/apps/battle/static/battle/images/pokebackground.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat; */
 }
 
 body {
@@ -177,7 +174,7 @@ body {
 }
 
 .display h3 {
-  margin: 1% 0 0 1%;
+  margin: 1% 0 .5em 1%;
   padding: 0;
 }
 
@@ -270,6 +267,19 @@ button a {
   width: 50px;
   margin-top: 2%;
 }
+
+button#switch, a.btn-dash {
+  background-color: #3c7396;
+  border: 3px solid #1a3342;
+  padding: .25em;
+
+}
+
+button#switch:hover, a.btn-dash:hover {
+  background-color: #56abe0;
+  border: 3px solid #ffffff;
+}
+
 
 @media all and (max-width: 600px) {
   .battle-scene {
