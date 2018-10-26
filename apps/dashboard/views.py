@@ -24,7 +24,7 @@ def index(request):
     #     for pokemon_type in pokemon["types"]:
     #         this_type = Types.objects.get(name = pokemon_type["type"]["name"])
     #         this_pokemon.pokemons_type.add(this_type)
-    teams = Trainers.objects.get(id=request.session["userid"]).trainers_team.all()
+    teams = Trainers.objects.get(email=request.session["email"]).trainers_team.all()
     pokemon_team = []
     for team in teams:
         pokemon_id = team.teams_pokemon_id
