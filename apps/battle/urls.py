@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^moves$', views.get_moves),
     url(r'^add_pokemon/(?P<number>\d+)$', views.add_pokemon),
     url(r'^switch_pokemon$', views.switch_pokemon),
-    url(r'^battle_trainers$', views.battle_trainers)
-    # url(r'^switch_pokemon/(?P<enemy_id>\d+)/(?P<enemy_hp>\d+)/(?P<order_number>\d+)', views.switch_pokemon)
+    url(r'^battle_trainers$', views.battle_trainers),
+    url(r'^battle_trainers/(?P<number>\d+)$', views.start_battle),
+    url(r'^enemy_switch$', views.enemy_switch)
 ]

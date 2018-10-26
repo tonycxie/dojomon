@@ -30,33 +30,41 @@
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="/dashboard/profile/{{request.session.userid}}">Profile</a></li>
                 <li><a href="/dashboard/edit_team">edit team</a></li>
-                <li><a href="">pokemon</a></li>
-                <li><a href="">trade requests</a></li>
-                <li><a href="">account settings</a></li>
+                <li><a href="/dashboard/edit_account">account settings</a></li>
                 <li><a href="/">logout</a></li>
             </ul>
         </nav>
         <div id="content">
             <div><a id="collapse-btn"><i class="fa fa-bars" aria-hidden="true"></i></a></div>
             <div class="container-fluid">
-                {% comment %} {% for trainer in trainers %} {% endcomment %}
+                {% for trainer in trainers %}
                 <div class="row">
-                    <p class="level col-1">req level: 1</p>
+                    <p class="level col-1">Req. Level: {{ trainer.required_level }}</p>
                     <div class="col-2 trainer-sprite-wrapper">
                         <!-- add locked class name and .hide to p tag is trainer level too low -->
-                        <img src="/static/battle/images/trainers/preschooler.png" alt="preschooler">
-                        <p>Preschooler</p>
+                        {% if user.trainer_level < trainer.required_level %}
+                        <img src="{{ trainer.character_sprite }}" alt="{{ trainer.name }}" class="locked">
+                        {% else %}
+                        <img src="{{ trainer.character_sprite }}" alt="{{ trainer.name }}">
+                        <p>{{ trainer.name }}</p>
+                        {% endif %}
                     </div>
                     <div class="col-6 trainers-team">
                         <!-- each pokemon sprite should have .hide if trainer is locked -->
+                        {% if user.trainer_level >= trainer.required_level %}
+                        {% for team in trainers_teams %}
+                        {% if team.cpu_teams_trainer_id == trainer.id %}
                         <div class="pokemon-sprite-wrapper">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png" alt="">
+                            <img src="{{ team.cpu_teams_pokemon.front_sprite }}" alt="">
                         </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
                     </div>
                     <!-- button should have .hide if trainer is locked -->
-                    <a href="" class="btn btn-primary col-2">battle!</a>
+                    <a href="/battle/battle_trainers/{{ trainer.id }}" class="btn btn-primary col-2">Battle!</a>
                 </div>
-                {% comment %} {%endfor%} {% endcomment %}
+                {%endfor%}
             </div>
         </div>
 </body>

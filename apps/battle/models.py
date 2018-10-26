@@ -11,3 +11,17 @@ class Moves(models.Model):
     moves_pokemon = models.ManyToManyField(Pokemon, related_name = "pokemons_move")
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+
+class CPUs(models.Model):
+    name = models.CharField(max_length = 255)
+    required_level = models.IntegerField()
+    character_sprite = models.CharField(max_length = 255)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+    
+class CPUTeam(models.Model):
+    order = models.IntegerField()
+    cpu_teams_trainer = models.ForeignKey(CPUs, related_name = "trainers_cpu_team")
+    cpu_teams_pokemon = models.ForeignKey(Pokemon, related_name = "pokemons_cpu_team")
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
