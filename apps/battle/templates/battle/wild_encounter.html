@@ -18,13 +18,18 @@
         <div class="battle-scene">
             <div class="enemy-info">
                 <input type="hidden" name="enemy-level" id="enemy-level" value="{{ enemy_level }}">
+                {% if cpu_id %}
+                <input type="hidden" name="cpu-id" id="cpu-id" value="{{ cpu_id }}">
+                {% endif %}
                 {% if enemy_order %}
                 <input type="hidden" name="enemy-order" id="enemy-order" value="{{ enemy_order }}">
                 {% endif %}
                 <input type="hidden" name="enemy-number" id="enemy-number" value="{{ enemy_pokemon.id }}">
-                {% for type in enemy_types %}
-                <input type="hidden" class="enemy-types" value="{{ type.name }}">
-                {% endfor %}
+                <div id="current-enemy-types">
+                    {% for type in enemy_types %}
+                    <input type="hidden" class="enemy-types" value="{{ type.name }}">
+                    {% endfor %}
+                </div>
                 <input type="hidden" id="enemy-speed" name="enemy-speed" value="{{ enemy_pokemon.speed }}">
                 <div class="enemy-moves">
                     {% for move in enemy_moves %}

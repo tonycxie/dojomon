@@ -251,7 +251,7 @@ function myMove() {
                         orderNumber + "'>" +
                         "<button type='submit' id='switch'>Next Pokemon</button>"                
                 );
-                nextPokemon(orderNumber);
+                myNextPokemon(orderNumber);
                 return;
             }
             flash(600, 300, $(".front-sprite"));
@@ -273,7 +273,13 @@ function myMove() {
             // if enemy health is 0, display winning message and end function
             if (enemyCurrentHP <= 0) {
                 if ($("#enemy-order").val()) {
-                    console.log("enemy is sending out next pokemon")
+                    console.log("enemy is sending out next pokemon");
+                    let enemyOrder = parseInt($("#enemy-order").val()) + 1;
+                    $(".display").html(
+                        "<h3>" + $("#enemy-name").html() + " fainted!</h3>" + 
+                        "<h3>Trainer is sending out their next Pokémon...</h3>"
+                    );
+                    enemyNextPokemon(enemyOrder);
                 } else {
                     $(".display").html(
                         "<h3 class='win'>You win! :D</h3>" + 
@@ -290,7 +296,7 @@ function myMove() {
             }
         }, timeout);
         // enemy pokemon will attack after you if you are faster
-        if (meFirst && enemyCurrentHP > 0) {
+        if (meFirst && newEnemyHP > 0) {
             enemyMove();
         }
     });
@@ -358,7 +364,13 @@ function enemyMove() {
         // if enemy health is 0, display winning message and end function
         if (enemyCurrentHP <= 0) {
             if ($("#enemy-order").val()) {
-                console.log("enemy is sending out next pokemon")
+                console.log("enemy is sending out next pokemon");
+                let enemyOrder = parseInt($("#enemy-order").val()) + 1;
+                $(".display").html(
+                    "<h3>" + $("#enemy-name").html() + " fainted!</h3>" + 
+                    "<h3>Trainer is sending out their next Pokémon...</h3>"
+                );
+                enemyNextPokemon(enemyOrder);
             } else {
                 $(".display").html(
                     "<h3 class='win'>You win! :D</h3>" + 
@@ -393,7 +405,7 @@ function enemyMove() {
                     orderNumber + "'>" +
                     "<button type='submit' id='switch'>Next Pokemon</button>" 
             );
-            nextPokemon(orderNumber);
+            myNextPokemon(orderNumber);
             return;
         }
         // menu reappears if you go first
@@ -405,7 +417,7 @@ function enemyMove() {
     }, timeout);
 }
 
-function nextPokemon(orderNumber) {
+function myNextPokemon(orderNumber) {
     $("#switch_form").submit(function(e) {
         e.preventDefault();
         $.ajax( {
@@ -413,13 +425,13 @@ function nextPokemon(orderNumber) {
             method: "post",
             data: $(this).serialize(),
             success: function(response) {
-                displayNextPokemon(response, orderNumber);
+                displayMyNextPokemon(response, orderNumber);
             }
         });
     });
 }
 
-function displayNextPokemon(response, orderNumber) {
+function displayMyNextPokemon(response, orderNumber) {
     let pokemon = JSON.parse(response["next_pokemon"]);
     let types = JSON.parse(response["types"]);
     let info = pokemon[0]["fields"];
@@ -441,7 +453,60 @@ function displayNextPokemon(response, orderNumber) {
     $(".back-sprite").attr("src", info["back_sprite"])
     $("#pokemon").attr("value", info["name"])
     $(".display").html(
+        "<h3 class='textbox'>You sent out " + info["name"].toUpperCase() + "!</h3>" +
         "<h3 class='textbox'>What will " + info["name"].toUpperCase() + " do?</h3>"
+    );
+    $(".options").toggle();
+}
+
+function enemyNextPokemon(orderNumber) {
+    window.setTimeout(function() {
+        let order = {
+            "order": orderNumber,
+            "trainer": $("#cpu-id").val()
+        };
+        $.ajax( {
+            url: "/battle/enemy_switch",
+            method: "post",
+            data: order,
+            success: function(response) {
+                displayEnemyNextPokemon(response, orderNumber);
+            }
+        });
+    }, 3000);
+}
+
+function displayEnemyNextPokemon(response, orderNumber) {
+    console.log(response);
+    let pokemon = JSON.parse(response["next_pokemon"]);
+    let types = JSON.parse(response["types"]);
+    let moves = JSON.parse(response["moves"]);
+    let info = pokemon[0]["fields"];
+    $("#enemy-number").attr("value", pokemon[0]["pk"]);
+    $("#enemy-order").attr("value", orderNumber);
+    let enemyTypes = "";
+    for (let i = 0; i < types.length; i++) {
+        enemyTypes += "<input type='hidden' class='enemy-types' value='" + 
+                   types[i]["fields"]["name"] + "'>"; 
+    }
+    $("#current-enemy-types").html(enemyTypes);
+    $("#enemy-speed").attr("value", info["speed"]);
+    let enemyMoves = "";
+    for (let i = 0; i < moves.length; i++) {
+        enemyMoves += "<input type='hidden' name='" + moves[i]["fields"]["name"] + 
+            "' class='" + moves[i]["fields"]["moves_type"] + 
+            "' value='" + moves[i]["fields"]["power"] + "'>";
+    }
+    $(".enemy-moves").html(enemyMoves);
+    $("#enemy-name").html(info["name"].toUpperCase());
+    $(".enemy-healthpoints").css("width", "100%");
+    $(".enemy-healthpoints").css("background", "#2fbb00")
+    $("#enemy-current-hp").html(info["health"])
+    $("#enemy-start-hp").html(info["health"])
+    $(".front-sprite").attr("src", info["front_sprite"])
+    $(".display").html(
+        "<h3 class='textbox'>Trainer sent out " + info["name"].toUpperCase() + "!</h3>" +
+        "<h3 class='textbox'>What will " + $("#my-name").html() + " do?</h3>"
     );
     $(".options").toggle();
 }
