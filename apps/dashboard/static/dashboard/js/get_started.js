@@ -17,7 +17,7 @@ $(document).ready(function() {
         // if yes, add charmander to team and render new page
         $(".select").append("<a id='yes' class='btn btn-success'  href='/dashboard/add_team/" + pokemon + "'>Yes</a>");
         // if no, go back to select page
-        $(".select").append("<button class='btn btn-danger' id='no'>No</button>");
+        $(".select").append("<a class='btn btn-danger' id='no'>No</a>");
         $("#no").click(function() {
             $(".starters").show();
             $(".select").html("");
