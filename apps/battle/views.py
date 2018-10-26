@@ -79,14 +79,17 @@ def add_pokemon(request, number):
 
 @csrf_exempt
 def switch_pokemon(request):
-    pokemon_id = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = request.POST["next-order"]).teams_pokemon_id
-    next_pokemon = Pokemon.objects.filter(id = pokemon_id)
-    types = Types.objects.filter(types_pokemon = next_pokemon)
-    response = {
-        "next_pokemon": serializers.serialize("json", next_pokemon),
-        "types": serializers.serialize("json", types)
-    } 
-    return HttpResponse(json.dumps(response), content_type = "application/json")
+    try:
+        pokemon_id = Team.objects.filter(teams_trainer = Trainers.objects.get(email = request.session["email"])).get(order = request.POST["next-order"]).teams_pokemon_id
+        next_pokemon = Pokemon.objects.filter(id = pokemon_id)
+        types = Types.objects.filter(types_pokemon = next_pokemon)
+        response = {
+            "next_pokemon": serializers.serialize("json", next_pokemon),
+            "types": serializers.serialize("json", types)
+        } 
+        return HttpResponse(json.dumps(response), content_type = "application/json")
+    except Team.DoesNotExist:
+        return HttpResponse(None)
 
 def battle_trainers(request):
     data = {
@@ -105,7 +108,7 @@ def start_battle(request, number):
         "enemy_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = enemy_pokemon.id)),
         "enemy_moves": Moves.objects.filter(moves_pokemon = Pokemon.objects.get(id = enemy_pokemon.id)),
         "enemy_level": "trainer",
-        "cpu_id": number,
+        "cpu": CPUs.objects.get(id = number),
         "enemy_order": 1,
         "my_pokemon": lead_pokemon,
         "order_number": 1,
@@ -116,13 +119,16 @@ def start_battle(request, number):
 
 @csrf_exempt
 def enemy_switch(request):
-    pokemon_id = CPUTeam.objects.filter(cpu_teams_trainer = CPUs.objects.get(id = request.POST["trainer"])).get(order = request.POST["order"]).cpu_teams_pokemon_id
-    next_pokemon = Pokemon.objects.filter(id = pokemon_id)
-    types = Types.objects.filter(types_pokemon = next_pokemon)
-    moves = Moves.objects.filter(moves_pokemon = next_pokemon)
-    response = {
-        "next_pokemon": serializers.serialize("json", next_pokemon),
-        "types": serializers.serialize("json", types),
-        "moves": serializers.serialize("json", moves)
-    } 
-    return HttpResponse(json.dumps(response), content_type = "application/json")
+    try:
+        pokemon_id = CPUTeam.objects.filter(cpu_teams_trainer = CPUs.objects.get(id = request.POST["trainer"])).get(order = request.POST["order"]).cpu_teams_pokemon_id
+        next_pokemon = Pokemon.objects.filter(id = pokemon_id)
+        types = Types.objects.filter(types_pokemon = next_pokemon)
+        moves = Moves.objects.filter(moves_pokemon = next_pokemon)
+        response = {
+            "next_pokemon": serializers.serialize("json", next_pokemon),
+            "types": serializers.serialize("json", types),
+            "moves": serializers.serialize("json", moves)
+        } 
+        return HttpResponse(json.dumps(response), content_type = "application/json")
+    except CPUTeam.DoesNotExist:
+        return HttpResponse(None)

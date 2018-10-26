@@ -18,8 +18,9 @@
         <div class="battle-scene">
             <div class="enemy-info">
                 <input type="hidden" name="enemy-level" id="enemy-level" value="{{ enemy_level }}">
-                {% if cpu_id %}
-                <input type="hidden" name="cpu-id" id="cpu-id" value="{{ cpu_id }}">
+                {% if cpu %}
+                <input type="hidden" name="cpu-id" id="cpu-id" value="{{ cpu.id }}">
+                <input type="hidden" name="cpu-name" id="cpu-name" value="{{ cpu.name }}">
                 {% endif %}
                 {% if enemy_order %}
                 <input type="hidden" name="enemy-order" id="enemy-order" value="{{ enemy_order }}">

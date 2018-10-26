@@ -277,7 +277,7 @@ function myMove() {
                     let enemyOrder = parseInt($("#enemy-order").val()) + 1;
                     $(".display").html(
                         "<h3>" + $("#enemy-name").html() + " fainted!</h3>" + 
-                        "<h3>Trainer is sending out their next Pokémon...</h3>"
+                        "<h3>" + $("#cpu-name").val() + " is sending out their next Pokémon...</h3>"
                     );
                     enemyNextPokemon(enemyOrder);
                 } else {
@@ -368,7 +368,7 @@ function enemyMove() {
                 let enemyOrder = parseInt($("#enemy-order").val()) + 1;
                 $(".display").html(
                     "<h3>" + $("#enemy-name").html() + " fainted!</h3>" + 
-                    "<h3>Trainer is sending out their next Pokémon...</h3>"
+                    "<h3>" + $("#cpu-name").val() + " is sending out their next Pokémon...</h3>"
                 );
                 enemyNextPokemon(enemyOrder);
             } else {
@@ -425,7 +425,15 @@ function myNextPokemon(orderNumber) {
             method: "post",
             data: $(this).serialize(),
             success: function(response) {
-                displayMyNextPokemon(response, orderNumber);
+                if (String(response) == "None") {
+                    $(".display").html(
+                        "<h3>You ran out of Pokémon</h3>" +
+                        "<h3>You lose! :(</h3>" + 
+                        "<a href='/dashboard/'>Return to Dashboard</a>"
+                    );
+                } else {
+                    displayMyNextPokemon(response, orderNumber);
+                }
             }
         });
     });
@@ -470,7 +478,15 @@ function enemyNextPokemon(orderNumber) {
             method: "post",
             data: order,
             success: function(response) {
-                displayEnemyNextPokemon(response, orderNumber);
+                if (String(response) == "None") {
+                    $(".display").html(
+                        "<h3>" + $("#cpu-name").val() + " is out of Pokémon</h3>" +
+                        "<h3>You win! :D</h3>" + 
+                        "<a href='/dashboard/'>Return to Dashboard</a>"
+                    );
+                } else {
+                    displayEnemyNextPokemon(response, orderNumber);
+                }
             }
         });
     }, 3000);
