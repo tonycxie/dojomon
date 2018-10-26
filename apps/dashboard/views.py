@@ -90,7 +90,7 @@ def profile_view(request, id):
     return render(request, "dashboard/profile.html",data)
 
 def save_sprite(request):
-    trainer = Trainers.objects.get(id=request.session["userid"])
+    trainer = Trainers.objects.get(email=request.session["email"])
     trainer.character_sprite = request.POST["character_sprite"]
     trainer.save()
     return HttpResponse("success")
@@ -107,13 +107,13 @@ def view_pokemon(request, id):
     return HttpResponse(json.dumps(response), content_type = "application/json")
 
 def edit_page(request):
-    teams = Trainers.objects.get(id=request.session["userid"]).trainers_team.all()
+    teams = Trainers.objects.get(email=request.session["email"]).trainers_team.all()
     pokemon_team = []
     for team in teams:
         pokemon_id = team.teams_pokemon_id
         pokemon_team.append(Pokemon.objects.get(id=pokemon_id))
     data = {
-        "trainer": Trainers.objects.get(id=request.session["userid"]),
+        "trainer": Trainers.objects.get(email=request.session["email"]),
         "all_pokemon": Pokemon.objects.all(),
         "trainers_team": pokemon_team
     }
@@ -178,7 +178,7 @@ def update_info(request):
             return redirect("/dashboard/edit_account")
         else:
             # pw_hash = bcrypt.hashpw(request.POST["password"].encode(), bcrypt.gensalt())
-            trainer = Trainers.objects.get(id=request.session["userid"])
+            trainer = Trainers.objects.get(email=request.session["email"])
             
             trainer.first_name = request.POST["first_name"]
             trainer.last_name = request.POST["last_name"]
