@@ -15,8 +15,7 @@ $(document).ready(function() {
         $(".select").append("<h2>Do you want " + pokemon.charAt(0).toUpperCase() 
             + pokemon.slice(1) + " to be your starter?</h2>");
         // if yes, add charmander to team and render new page
-        $(".select").append("<button class='btn btn-success' id='yes'>"
-            + "<a href='/dashboard/add_team/" + pokemon + "'>Yes</a></button>");
+        $(".select").append("<a id='yes' class='btn btn-success'  href='/dashboard/add_team/" + pokemon + "'>Yes</a>");
         // if no, go back to select page
         $(".select").append("<button class='btn btn-danger' id='no'>No</button>");
         $("#no").click(function() {
