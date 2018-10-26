@@ -247,7 +247,7 @@ function myMove() {
                     "<form action='/battle/switch_pokemon' method='post' id='switch_form'>" + 
                         "<input type='hidden' name='next-order' id='next-order' value='" + 
                         orderNumber + "'>" +
-                        "<button type='submit' id='switch'>Next Pokemon</button>"                
+                        "<button class='btn' type='submit' id='switch'>Next Pokemon</button>"                
                 );
                 myNextPokemon(orderNumber);
                 return;
@@ -283,7 +283,7 @@ function myMove() {
                 } else {
                     $(".display").html(
                         "<h3 class='win'>You win! :D</h3>" + 
-                        "<a href='/battle/add_pokemon/" + $("#enemy-number").val() + "'>Return to Dashboard</a>"
+                        "<a class='btn btn-dash' href='/battle/add_pokemon/" + $("#enemy-number").val() + "'>Return to Dashboard</a>"
                     );
                 }
                 return;
@@ -374,7 +374,7 @@ function enemyMove() {
             } else {
                 $(".display").html(
                     "<h3 class='win'>You win! :D</h3>" + 
-                    "<a href='/battle/add_pokemon/" + $("#enemy-number").val() + "'>Return to Dashboard</a>"
+                    "<a class='btn btn-dash' href='/battle/add_pokemon/" + $("#enemy-number").val() + "'>Return to Dashboard</a>"
                 );
             }
             return;
@@ -405,7 +405,7 @@ function enemyMove() {
                 "<form action='/battle/switch_pokemon' method='post' id='switch_form'>" + 
                     "<input type='hidden' name='next-order' id='next-order' value='" + 
                     orderNumber + "'>" +
-                    "<button type='submit' id='switch'>Next Pokemon</button>" 
+                    "<button class='btn' type='submit' id='switch'>Next Pokemon</button>"                
             );
             myNextPokemon(orderNumber);
             return;
@@ -431,7 +431,7 @@ function myNextPokemon(orderNumber) {
                     $(".display").html(
                         "<h3>You ran out of Pokémon</h3>" +
                         "<h3>You lose! :(</h3>" + 
-                        "<a href='/dashboard/'>Return to Dashboard</a>"
+                        "<a class='btn btn-dash' href='/dashboard/'>Return to Dashboard</a>"
                     );
                 } else {
                     displayMyNextPokemon(response, orderNumber);
@@ -484,7 +484,7 @@ function enemyNextPokemon(orderNumber) {
                     $(".display").html(
                         "<h3>" + $("#cpu-name").val() + " is out of Pokémon</h3>" +
                         "<h3>You win! :D</h3>" + 
-                        "<a href='/dashboard/'>Return to Dashboard</a>"
+                        "<a class='btn btn-dash' href='/dashboard/'>Return to Dashboard</a>"
                     );
                 } else {
                     displayEnemyNextPokemon(response, orderNumber);
