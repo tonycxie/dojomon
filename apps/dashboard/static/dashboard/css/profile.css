@@ -99,7 +99,7 @@ img.character-sprite {
     display:inline-block;
 }
 
-.pokemon-img > img{
+.pokemon-img > img {
     width: 90px;
     height: 90px;
     /* margin: .5em .2em; */
@@ -232,6 +232,11 @@ form > button {
 .img-wrapper {
     border-right: 3px solid rgb(216, 213, 213);
     padding: .5em;
+}
+
+.img-wrapper img {
+    width: 96px;
+    height: 96px;
 }
 
 div.top .poke-info p {

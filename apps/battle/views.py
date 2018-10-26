@@ -55,6 +55,7 @@ def wild_encounter(request, number):
         "enemy_moves": Moves.objects.filter(moves_pokemon = Pokemon.objects.get(id = number)),
         "enemy_level": "wild_pokemon",
         "my_pokemon": lead_pokemon,
+        "all_my_pokemon": Pokemon.objects.filter(pokemons_trainer = Trainers.objects.get(email = request.session["email"])),
         "order_number": 1,
         "my_types": Types.objects.filter(types_pokemon = Pokemon.objects.get(id = lead_pokemon.id))
     }

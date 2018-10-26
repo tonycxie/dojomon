@@ -21,7 +21,7 @@
     <div id="wrapper" class="container-fluid">
         <nav class="float-left" id="sidebar">
             <div class="sidebar-header">
-                <h4>Pokemon Menu</h4>
+                <h4>Pokémon Menu</h4>
             </div>
             <ul class="list-unstyled components">
                 <li>
@@ -29,9 +29,9 @@
                 </li>
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="/dashboard/profile/{{request.session.userid}}">Profile</a></li>
-                <li><a href="/dashboard/edit_team">edit team</a></li>
-                <li><a href="/dashboard/edit_account">account settings</a></li>
-                <li><a href="/dashboard/logout">logout</a></li>
+                <li><a href="/dashboard/edit_team">Edit Team</a></li>
+                <li><a href="/dashboard/edit_account">Account Settings</a></li>
+                <li><a href="/dashboard/logout">Logout</a></li>
             </ul>
         </nav>
         <div id="content">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="pokedex-wrapper col-5 container-fluid">
-                    <h4>Your Pokemon</h4>
+                    <h4>Your Pokémon</h4>
                     <div id="pokedex">
                         {% for sprite in all_pokemon %}
                         {% if sprite in trainer.trainers_pokemon.all %}
@@ -75,8 +75,8 @@
                     <div id="pokemon-view" class="container-fluid">
                         <div class="row top">
                             <div class="col-2.75 img-wrapper">
-                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png"
-                                    alt="">
+                                <img src="/static/dashboard/images/pokemon-icon.png" 
+                                alt="">
                             </div>
                             <div class="poke-info col-8">
                                 <p class="info-name"></p>

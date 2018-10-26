@@ -38,6 +38,9 @@
                     {% endfor %}
                 </div>
                 <h2 class="pokemon" id="enemy-name">{{ enemy_pokemon.name|upper }}</h2>
+                {% if enemy_pokemon in all_my_pokemon %}
+                <img src="/static/dashboard/images/pokemon-icon.png" alt="pokeball" id="found">
+                {% endif %}
                 <div class="enemy-hp-container">
                     <div class="enemy-healthpoints"></div>
                 </div>

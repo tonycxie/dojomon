@@ -261,6 +261,16 @@ button a {
   color: white;
 }
 
+#enemy-name, #found {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#found {
+  width: 50px;
+  margin-top: 2%;
+}
+
 @media all and (max-width: 600px) {
   .battle-scene {
     position: relative;

@@ -20,7 +20,7 @@
     <div id="wrapper" class="container-fluid">
         <nav class="float-left" id="sidebar">
             <div class="sidebar-header">
-                <h4>Pokemon Menu</h4>
+                <h4>Pokémon Menu</h4>
             </div>
 
             <ul class="list-unstyled components">
@@ -29,9 +29,9 @@
                 </li>
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="/dashboard/profile/{{request.session.userid}}">Profile</a></li>
-                <li><a href="/dashboard/edit_team">edit team</a></li>
-                <li><a href="/dashboard/edit_account">account settings</a></li>
-                <li><a href="/dashboard/logout">logout</a></li>
+                <li><a href="/dashboard/edit_team">Edit Team</a></li>
+                <li><a href="/dashboard/edit_account">Account Settings</a></li>
+                <li><a href="/dashboard/logout">Logout</a></li>
             </ul>
         </nav>
         <div id="content">
@@ -52,7 +52,7 @@
                         <div class="trainer-info col-9">
                             <p>Name: {{trainer.first_name}}</p>
                             <p>Trainer Level: {{trainer.trainer_level}}</p>
-                            <p>Pokemon Found: {{trainer.trainers_pokemon.count}}</p>
+                            <p>Pokémon Found: {{trainer.trainers_pokemon.count}}</p>
                         </div>
                         <div class="player-party container-fluid">
                             {% for sprite in trainers_team %}
@@ -73,7 +73,7 @@
                     <div id="pokemon-view" class="container-fluid">
                         <div class="row top">
                             <div class="col-3 img-wrapper">
-                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png" alt="">
+                                <img src="/static/dashboard/images/pokemon-icon.png" alt="">
                             </div>
                             <div class="poke-info col-8">
                                 <p class="name"></p>
@@ -90,7 +90,7 @@
                     </div>
                 </div>
                 <div class="pokedex-wrapper col-5 container-fluid">
-                    <h4>Pokedex</h4>
+                    <h4>Pokédex</h4>
                     <div class="filter">
                         <button class="btn" id="all">all</button>
                         <button class="btn" id="found">found</button>
