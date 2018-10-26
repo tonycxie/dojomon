@@ -14,7 +14,11 @@
 
 <body>
     <div id="app">
+        {% if cpu %}
+        <h1 class="title">Trainer Battle!</h1>
+        {% else %}
         <h1 class="title">Wild Encounter!</h1>
+        {% endif %}
         <div class="battle-scene">
             <div class="enemy-info">
                 <input type="hidden" name="enemy-level" id="enemy-level" value="{{ enemy_level }}">

@@ -252,7 +252,9 @@ function myMove() {
                 myNextPokemon(orderNumber);
                 return;
             }
-            flash(600, 300, $(".front-sprite"));
+            if (powerMult != 0) {
+                flash(600, 300, $(".front-sprite"));
+            }
             $("#enemy-current-hp").html(newEnemyHP);
             $(".enemy-healthpoints").css("width", enemyHPBar + "%");
             if (enemyHPBar < 20) {
@@ -377,7 +379,9 @@ function enemyMove() {
             }
             return;
         }
-        flash(600, 300, $(".back-sprite"));
+        if (powerMult != 0) {
+            flash(600, 300, $(".back-sprite"));
+        }
         $("#my-current-hp").html(myNewHP);
         $(".my-healthpoints").css("width", myHPBar + "%");
         if (myHPBar < 20) {
