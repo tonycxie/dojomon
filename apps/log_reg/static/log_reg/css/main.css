@@ -10,7 +10,6 @@ audio::-moz-media-controls-panel{
 }
 
 body * {
-    /* outline: 1px solid black; */
     margin: 0;
     padding: 0;
 }
@@ -35,12 +34,9 @@ div.gameboy-wrapper {
 }
 
 .screen {
-    /* display: inline-block; */
     width: 420px;
     height: 410px;
     margin: 3em auto 0 auto;
-    /* background-color:#c3c8b1; */
-    /* background-position: left left; */
     background: url("/static/log_reg/images/screen.gif");
     background-size: contain;
     background-repeat: no-repeat;
@@ -114,7 +110,6 @@ a.btn:hover {
     font-size: 12pt;
     color: black;
     background-color:#f7f7f7;
-    /* border: 1px solid black; */
     padding: 10px;
     display: inline-block;
     position: relative;

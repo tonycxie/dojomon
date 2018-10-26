@@ -67,7 +67,6 @@ form.remove-pokemon {
 
 
 #player-party .pokemon-wrapper {
-    /* border: 1px solid black; */
     border-radius: .5em;
     background-color: #ffefef;
     margin: .5em 0;
@@ -164,16 +163,10 @@ p.description {
     border-right: 3px solid rgb(47, 47, 48);
 }
 
-/* .top .col-8 {
-    padding: .5em;
-    margin: .5em;
-} */
-
 div.top .poke-info p {
     text-align: left;
     font-size: 10pt;
     margin: 0;
-    /* padding: .5em; */
 }
 
 

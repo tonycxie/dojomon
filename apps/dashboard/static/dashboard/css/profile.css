@@ -20,8 +20,6 @@ body * {
     border-radius: .5em;
     background-color: whitesmoke;
     box-shadow: 4px 4px 1px rgb(197, 197, 197);
-    /* background-color: rgb(43, 27, 27); */
-    /* margin-top: 2em; */
 }
 
 
@@ -102,7 +100,6 @@ img.character-sprite {
 .pokemon-img > img {
     width: 90px;
     height: 90px;
-    /* margin: .5em .2em; */
 }
 
 .trainer-card {
@@ -112,11 +109,8 @@ img.character-sprite {
 
 
 div.pokedex-wrapper {
-    /* margin: 2em 0; */
     width: 800px;
     padding: 1em;
-    /* border-left: 3px solid rgb(5, 16, 97);
-    border-top: 3px solid rgb(5, 16, 97); */
     border-radius: .5em;
     background-color: #FF0000;
     box-shadow: 10px 10px 1px #7e1a17;
@@ -132,7 +126,6 @@ div.pokedex-wrapper > h4 {
     width: 90%;
     padding: 1em;
     margin: 1em auto;
-    /* border: 3px solid rgb(46, 62, 182); */
     border-radius: .5em;
 }
 
@@ -151,7 +144,6 @@ div.pokedex-wrapper > h4 {
 }
 
 .filter button:active {
-    /* box-shadow: 0 5px #666; */
     transform: translateY(3px);
 }
 
@@ -216,15 +208,9 @@ form > button {
     margin: 0;
 }
 
-/* div.img-wrapper {
-    margin: 0;
-    padding: 0;
-} */
-
  /* pokemon info card  style */
 
 .poke-info {
-    /* padding: 2em 0 0 .5em; */
     width: 100%;
     margin: auto 0;
 }

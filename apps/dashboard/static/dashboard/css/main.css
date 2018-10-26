@@ -4,7 +4,6 @@
 }
 
 body * {
-    /* outline: 1px solid pink; */
     margin: 0;
     padding: 0;
 }
@@ -22,7 +21,6 @@ div.container-fluid {
 }
 
 #player-party {
-    /* border: 3px solid rgb(47, 47, 48); */
     border-radius: .5em;
     width: 50%;
     margin: 0 auto;
