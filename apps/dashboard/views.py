@@ -132,7 +132,7 @@ def add_to_team(request):
     check_dups = team.filter(teams_pokemon_id = request.POST["add-id"]).count()  
     if order == 6 or check_dups > 0:
         print("team is full or pokemon is already in team")
-        pokemon = None
+        return HttpResponse(None)
     else:
         next_order = order + 1
         Team.objects.create(
@@ -141,13 +141,15 @@ def add_to_team(request):
             teams_trainer = trainer
         )
         pokemon = Pokemon.objects.filter(id = request.POST["add-id"])
-    return HttpResponse(serializers.serialize("json", pokemon), content_type = "application/json")
+        return HttpResponse(serializers.serialize("json", pokemon), content_type = "application/json")
 
 
 @csrf_exempt
 def remove_team(request):
     trainer = Trainers.objects.get(email = request.session["email"])
     team = Team.objects.filter(teams_trainer = trainer)
+    if team.count() == 1:
+        return redirect("/dashboard/edit_team")
     print("removing " + request.POST["remove-id"])
     team.get(teams_pokemon_id = request.POST["remove-id"]).delete()
     team = Team.objects.filter(teams_trainer = trainer)

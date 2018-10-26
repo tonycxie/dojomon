@@ -7,19 +7,8 @@ function addToTeam() {
             data: $(this).serialize(),
             success: function(response) {
                 console.log(response);
-                if (response) {
+                if (String(response) != "None") {
                     $("#player-party").append(
-                        // <div class="pokemon-wrapper row">
-                        //     <div class="pokemon-img col-3">
-                        //         <img src="{{sprite.front_sprite}}">
-                        //     </div>
-                        //     <p class="name col-7">{{sprite.name}}</p>
-                        //     <form action="/dashboard/remove_team" method="post" class="col-2 remove-pokemon">
-                        //         <input type="hidden" name="remove-id" class="remove-id" value="{{ sprite.id }}">
-                        //         <button class="btn" type="submit"><i class="fa fa-minus" aria-hidden="true"></i>
-                        //         </button>
-                        //     </form>
-                        // </div>
                         "<div class='pokemon-wrapper row'>" + 
                             "<div class='pokemon-img col-3'>" + 
                                 "<img src='" + response[0]["fields"]["front_sprite"] + "'>" + 
