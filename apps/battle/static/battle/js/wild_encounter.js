@@ -134,8 +134,6 @@ function displayMoves() {
                     content += "<h3>" + serverResponse[i]["fields"]["name"] + "</h3>";
                     content += "<p>" + types[serverResponse[i]["fields"]["moves_type"] - 1] + 
                         ", Power:" + serverResponse[i]["fields"]["power"] + "</p>";
-                    content += "<p>" + serverResponse[i]["fields"]["pp"] + "/" + 
-                        serverResponse[i]["fields"]["pp"] + "</p>";
                     content += "<input type='hidden' name='type' class='type' value='" + 
                         types[serverResponse[i]["fields"]["moves_type"] - 1] + "'>";
                     content += "<input type='hidden' name='power' class='power' value='" + 
