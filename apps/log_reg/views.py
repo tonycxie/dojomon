@@ -53,6 +53,8 @@ def registration(request):
             password_hash = pw_hash,
             character_sprite = "/static/dashboard/images/character_sprites/sprite1.png"
         )
+        trainer = Trainers.objects.get(email = request.session["email"])
+        request.session["userid"] = trainer.id
     return redirect("/dashboard/get_started")
 
 
