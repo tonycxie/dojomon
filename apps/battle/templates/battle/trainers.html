@@ -62,7 +62,9 @@
                         {% endif %}
                     </div>
                     <!-- button should have .hide if trainer is locked -->
+                    {% if user.trainer_level >= trainer.required_level %}
                     <a href="/battle/battle_trainers/{{ trainer.id }}" class="btn btn-primary col-2">Battle!</a>
+                    {% endif %}
                 </div>
                 {%endfor%}
             </div>
