@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^edit_team$', views.edit_page),
     url(r'^add_to_team$', views.add_to_team),
     url(r'^remove_team$', views.remove_team),
-    url(r'^edit_account$', views.edit_account)
+    url(r'^edit_account$', views.edit_account),
+    url(r'^update$', views.update_info)
 ]
