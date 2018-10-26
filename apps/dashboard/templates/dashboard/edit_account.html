@@ -46,7 +46,7 @@
                     {% endif %}
                     <div class="register-form">
                         <h2>Account Information</h2>
-                        <form action="/dashboard/update_info" method="post">
+                        <form action="/dashboard/update" method="post">
                             {% csrf_token %}
                             <label for="first_name" class="control-label">First name:</label>
                             <input type="text" class="form-control" name="first_name" value="{{trainer.first_name}}">
