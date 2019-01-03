@@ -6,7 +6,7 @@ A web-based game built with Python using the Django framework and SQLite databas
 Features:
 =========
 - Utilized PokéAPI to populate database with Pokémon information
-- Implemented AJAX with Django to dynamically show damage done during battles and remaining health
+- Implemented AJAX with Django to dynamically show damage done and remaining health during battles
 
 
 To Use:
