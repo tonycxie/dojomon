@@ -1,6 +1,6 @@
 Dojomon
 ============
-A web-based game built with Python using the Django framework and SQLite database.
+A web-based game built with Python using the Django framework and SQLite database based on the popular Pokémon video games.
 
 
 Features:
